@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8db9640f3f112d46a5eed2138c27253, type: 3}
-  m_Name: Black
+  m_Name: Heavy
   m_EditorClassIdentifier: 
-  name: Black
-  sprite: {fileID: 21300000, guid: 7d491f81f91749f4483d09339f7b546e, type: 3}
+  name: Heavy
+  sprite: {fileID: 21300000, guid: 5131fde9b25336f4482f2d6ac5ac4fc0, type: 3}
   reactsWith:
-  - {fileID: 11400000, guid: d7b68dba45d661e4dbae4543e0555439, type: 2}
+  - {fileID: 11400000, guid: 556470180272ba844a51472a7202b7af, type: 2}

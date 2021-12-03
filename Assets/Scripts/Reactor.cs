@@ -25,7 +25,7 @@ public class Reactor : Collidable {
 		Reactor otherReactor = coll.gameObject.GetComponent<Reactor>();
 
 		if (otherReactor != null) {
-			if (otherReactor.objectPair == objectPair.reactsWith) {
+			if (objectPair.reactsWithList().Contains(otherReactor.objectPair)) {
 				Destroy(gameObject);
 				Destroy(coll.gameObject);
 			}

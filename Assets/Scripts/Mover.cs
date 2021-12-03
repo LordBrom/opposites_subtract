@@ -29,18 +29,12 @@ public class Mover : MonoBehaviour {
 		// Rotate
 		bool movedY = false;
 		if (moveDelta.y != 0) {
-			hit = Physics2D.BoxCast(transform.position, boxCollider2D.size, 0, new Vector2(0, moveDelta.y), Mathf.Abs(moveDelta.y * Time.deltaTime), LayerMask.GetMask("Blocking"));
-			if (hit.collider == null) {
-				transform.Translate(0, moveDelta.y * Time.deltaTime, 0);
-				movedY = true;
-			}
+			transform.Translate(0, moveDelta.y * Time.deltaTime, 0);
+			movedY = true;
 		}
 
 		if (!movedY && moveDelta.x != 0) {
-			hit = Physics2D.BoxCast(transform.position, boxCollider2D.size, 0, new Vector2(moveDelta.x, 0), Mathf.Abs(moveDelta.x * Time.deltaTime), LayerMask.GetMask("Blocking"));
-			if (hit.collider == null) {
-				transform.Translate(moveDelta.x * Time.deltaTime, 0, 0);
-			}
+			transform.Translate(moveDelta.x * Time.deltaTime, 0, 0);
 		}
 	}
 }

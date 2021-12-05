@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour {
 	#region Inspector Assignments
 
 	public LevelBuilder levelBuilder;
-	public Level testLevel;
+	public LevelOverMenu levelOverMenu;
+	public Level level;
 
 	#endregion
 	#region Variables
@@ -26,7 +27,8 @@ public class GameManager : MonoBehaviour {
 
 	#region Unity Methods
 	void Start() {
-		levelBuilder.buildLevel(testLevel);
+		levelBuilder.buildLevel(level);
+		levelOverMenu.hideMenu();
 	}
 
 	void Update() {
@@ -37,10 +39,19 @@ public class GameManager : MonoBehaviour {
 	#endregion
 
 	public void endLevel() {
-		Debug.Log("Level Over");
+		levelOverMenu.showMenu();
 	}
 
 	public void reloadLevel() {
-		levelBuilder.buildLevel(testLevel);
+		levelOverMenu.hideMenu();
+		levelBuilder.buildLevel(level);
+	}
+
+	public void nextLevel() {
+		Debug.Log("Next Level");
+	}
+
+	public void levelSelect() {
+		Debug.Log("Back to Level Select"); // probably just a scene
 	}
 }

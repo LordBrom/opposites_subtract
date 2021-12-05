@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3443cff602f87924185eb891013eacf8, type: 3}
   m_Name: SmallLevel
   m_EditorClassIdentifier: 
-  height: 3
   width: 3
+  height: 3
+  levelText: Press R to Reload Level
   levelObjects:
   - levelObjectType: 0
     objectPair: {fileID: 0}
@@ -23,10 +24,6 @@ MonoBehaviour:
     objectPair: {fileID: 0}
     x: 2
     y: 1
-  - levelObjectType: 2
-    objectPair: {fileID: 0}
-    x: 1
-    y: 3
   - levelObjectType: 3
     objectPair: {fileID: 11400000, guid: cd275e67fd45fde4c961e8d3783ae60b, type: 2}
     x: 1
@@ -39,3 +36,7 @@ MonoBehaviour:
     objectPair: {fileID: 11400000, guid: 556470180272ba844a51472a7202b7af, type: 2}
     x: 2
     y: 2
+  - levelObjectType: 2
+    objectPair: {fileID: 11400000, guid: 556470180272ba844a51472a7202b7af, type: 2}
+    x: 1
+    y: 3

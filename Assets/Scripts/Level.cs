@@ -4,8 +4,10 @@ using UnityEngine;
 public class Level : ScriptableObject {
 
 	// Interior
-	public int height = 10;
 	public int width = 12;
+	public int height = 10;
+
+	public string levelText;
 
 	public LevelObject[] levelObjects;
 

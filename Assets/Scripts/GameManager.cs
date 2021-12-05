@@ -30,7 +30,17 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Update() {
-
+		if (Input.GetKeyDown(KeyCode.R)) {
+			reloadLevel();
+		}
 	}
 	#endregion
+
+	public void endLevel() {
+		Debug.Log("Level Over");
+	}
+
+	public void reloadLevel() {
+		levelBuilder.buildLevel(testLevel);
+	}
 }

@@ -5,7 +5,7 @@ public class HoverMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
 	#region Inspector Assignments
 
-	public float hiddenAlpha = 0.3f;
+	public float hiddenAlpha = 1f;
 
 	#endregion
 	#region Variables

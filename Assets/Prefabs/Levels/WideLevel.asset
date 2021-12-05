@@ -15,4 +15,8 @@ MonoBehaviour:
   width: 15
   height: 5
   levelText: Wide Level Test
-  levelObjects: []
+  levelObjects:
+  - levelObjectType: 1
+    objectPair: {fileID: 0}
+    x: 1
+    y: 1

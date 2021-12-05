@@ -16,6 +16,9 @@ public class PlayerController : Mover {
 
 		updateMotor(new Vector2(x, y));
 	}
+	public void onSceneLoad() {
+		transform.position = GameObject.Find("SpawnPoint").transform.position;
+	}
 
 	#endregion
 }

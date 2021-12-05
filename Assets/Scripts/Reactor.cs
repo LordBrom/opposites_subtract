@@ -26,13 +26,17 @@ public class Reactor : Collidable {
 
 		if (otherReactor != null) {
 			if (objectPair.reactsWithList().Contains(otherReactor.objectPair)) {
+				if (objectPair.createdResult != null) {
+
+				}
 				Destroy(gameObject);
 				Destroy(coll.gameObject);
 			}
 		}
 	}
 
-	protected virtual void setBlockData(ObjectPair blockData) {
+	public virtual void setBlockData(ObjectPair blockData) {
+		objectPair = blockData;
 		name = blockData.name;
 		gameObject.GetComponent<SpriteRenderer>().sprite = blockData.sprite;
 	}

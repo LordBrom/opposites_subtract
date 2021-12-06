@@ -16,8 +16,8 @@ public class LevelBuilder : MonoBehaviour {
 	#endregion
 	#region Variables
 
-	private List<GameObject> levelObjects = new List<GameObject>();
-	private Camera cam;
+	protected List<GameObject> levelObjects = new List<GameObject>();
+	protected Camera cam;
 
 	#endregion
 
@@ -28,7 +28,7 @@ public class LevelBuilder : MonoBehaviour {
 
 	#endregion
 
-	public void buildLevel(Level level) {
+	public virtual void buildLevel(Level level) {
 		clearLevel();
 
 		createBoarder(level.height, level.width);
@@ -38,7 +38,7 @@ public class LevelBuilder : MonoBehaviour {
 		levelText.text = level.levelText;
 	}
 
-	private void createBoarder(int height, int width) {
+	protected virtual void createBoarder(int height, int width) {
 		GameObject newFloor = Instantiate(floorPrefab, transform);
 		newFloor.transform.position = new Vector3(((float)width + 1) / 2, ((float)height + 1) / 2, 2);
 		newFloor.transform.localScale = new Vector3((float)width + 2, (float)height + 2, 1);
@@ -54,7 +54,7 @@ public class LevelBuilder : MonoBehaviour {
 		}
 	}
 
-	private void fillLevelObjects(LevelObject[] _levelObjects) {
+	protected virtual void fillLevelObjects(LevelObject[] _levelObjects) {
 		foreach (LevelObject levelObject in _levelObjects) {
 			switch (levelObject.levelObjectType) {
 				case LevelObjectType.Wall:
@@ -81,7 +81,7 @@ public class LevelBuilder : MonoBehaviour {
 		}
 	}
 
-	private void setCameraPosition(int height, int width) {
+	protected virtual void setCameraPosition(int height, int width) {
 		cam.transform.position = new Vector3(((float)width + 1) / 2, ((float)height + 1) / 2, -10);
 
 
@@ -95,7 +95,7 @@ public class LevelBuilder : MonoBehaviour {
 		cam.orthographicSize = desiredScale;
 	}
 
-	private void clearLevel() {
+	protected virtual void clearLevel() {
 		foreach (GameObject levelObject in levelObjects) {
 			Destroy(levelObject);
 		}

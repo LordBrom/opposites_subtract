@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
-public class LevelEditor : MonoBehaviour {
+public class LevelEditor : LevelBuilder {
 
 	#region Inspector Assignments
+
 
 	public InputField widthInput;
 	public InputField heightInput;
@@ -11,28 +14,40 @@ public class LevelEditor : MonoBehaviour {
 	#endregion
 	#region Variables
 
+	private Level level;
+
 	#endregion
 
 	#region Unity Methods
-	void Start() {
+	protected override void Start() {
+		widthInput.onValueChanged.AddListener(delegate { saveLevel(); });
+		heightInput.onValueChanged.AddListener(delegate { saveLevel(); });
+		level = new Level();
+		base.Start();
 
-		widthInput.onValueChanged.AddListener(delegate { createBoarder(); });
-		heightInput.onValueChanged.AddListener(delegate { createBoarder(); });
-	}
-
-	void Update() {
-
+		buildLevel();
 	}
 	#endregion
 
-	private void createBoarder() {
-		//for (int x = 0; x <= width + 1; x++) {
-		//	levelObjects.Add(Instantiate(wallPrefab, new Vector2(x, 0), Quaternion.identity, transform));
-		//	levelObjects.Add(Instantiate(wallPrefab, new Vector2(x, height + 1), Quaternion.identity, transform));
-		//}
-		//for (int y = 1; y <= height; y++) {
-		//	levelObjects.Add(Instantiate(wallPrefab, new Vector2(0, y), Quaternion.identity, transform));
-		//	levelObjects.Add(Instantiate(wallPrefab, new Vector2(width + 1, y), Quaternion.identity, transform));
-		//}
+	public void saveLevel() {
+		level.width = int.Parse(widthInput.text);
+		level.height = int.Parse(heightInput.text);
+
+		EditorUtility.SetDirty(level);
+		AssetDatabase.SaveAssets();
+		AssetDatabase.Refresh();
+	}
+
+	public void buildLevel() {
+		clearLevel();
+
+		int width = int.Parse(widthInput.text);
+		int height = int.Parse(heightInput.text);
+
+		createBoarder(height, width);
+		//fillLevelObjects(level.levelObjects);
+		setCameraPosition(height, width);
+
+		//levelText.text = level.levelText;
 	}
 }

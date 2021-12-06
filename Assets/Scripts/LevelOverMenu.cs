@@ -1,34 +1,16 @@
 using UnityEngine;
 
-public class LevelOverMenu : MonoBehaviour {
+public class LevelOverMenu : HideableMenu {
 
-	#region Inspector Assignments
-
-	#endregion
-	#region Variables
-
-	private CanvasGroup canvasGroup;
-
-	#endregion
-
-	#region Unity Methods
-	void Start() {
-		canvasGroup = GetComponent<CanvasGroup>();
+	public void mainMenu() {
+		GameManager.instance.goToMainMenu();
 	}
 
-	void Update() {
-
+	public void reloadLevel() {
+		GameManager.instance.reloadLevel();
 	}
-	#endregion
 
-	public void showMenu() {
-		canvasGroup.alpha = 1;
-		canvasGroup.interactable = true;
-		canvasGroup.blocksRaycasts = true;
-	}
-	public void hideMenu() {
-		canvasGroup.alpha = 0;
-		canvasGroup.interactable = false;
-		canvasGroup.blocksRaycasts = false;
+	public void nextLevel() {
+		GameManager.instance.nextLevel();
 	}
 }

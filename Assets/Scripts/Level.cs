@@ -21,7 +21,7 @@ public class Level : ScriptableObject {
 			if (levelObjects[i].levelObjectType == LevelObjectType.Spawn) {
 				spawnCount++;
 			}
-			if (levelObjects[i].levelObjectType == LevelObjectType.LevelEnd) {
+			if (levelObjects[i].levelObjectType == LevelObjectType.LevelEnd || levelObjects[i].hasLevelEnd) {
 				endCount++;
 			}
 		}
@@ -42,6 +42,7 @@ public class Level : ScriptableObject {
 public struct LevelObject {
 	public LevelObjectType levelObjectType;
 	public ObjectPair objectPair;
+	public bool hasLevelEnd;
 	public int x;
 	public int y;
 }

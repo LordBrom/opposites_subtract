@@ -22,7 +22,7 @@ public class LevelBuilder : MonoBehaviour {
 	#endregion
 
 	#region Unity Methods
-	protected virtual void Start() {
+	protected virtual void Awake() {
 		cam = Camera.main;
 	}
 
@@ -36,6 +36,10 @@ public class LevelBuilder : MonoBehaviour {
 		setCameraPosition(level.height, level.width);
 
 		levelText.text = level.levelText;
+	}
+
+	public void addLevelEnd(Vector2 pos) {
+		levelObjects.Add(Instantiate(endPointPrefab, pos, Quaternion.identity, transform));
 	}
 
 	protected virtual void createBoarder(int height, int width) {
@@ -71,7 +75,7 @@ public class LevelBuilder : MonoBehaviour {
 
 				case LevelObjectType.Object:
 					GameObject newObject = Instantiate(blockPrefab, new Vector2(levelObject.x, levelObject.y), Quaternion.identity, transform);
-					newObject.GetComponent<Reactor>().setBlockData(levelObject.objectPair);
+					newObject.GetComponent<Reactor>().setBlockData(levelObject.objectPair, levelObject.hasLevelEnd);
 					levelObjects.Add(newObject);
 					break;
 

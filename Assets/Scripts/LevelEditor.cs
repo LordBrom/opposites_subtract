@@ -7,7 +7,6 @@ public class LevelEditor : LevelBuilder {
 
 	#region Inspector Assignments
 
-
 	public InputField widthInput;
 	public InputField heightInput;
 
@@ -19,11 +18,10 @@ public class LevelEditor : LevelBuilder {
 	#endregion
 
 	#region Unity Methods
-	protected override void Start() {
+	private void Start() {
 		widthInput.onValueChanged.AddListener(delegate { saveLevel(); });
 		heightInput.onValueChanged.AddListener(delegate { saveLevel(); });
 		level = new Level();
-		base.Start();
 
 		buildLevel();
 	}

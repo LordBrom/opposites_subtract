@@ -9,6 +9,8 @@ public class Reactor : Collidable {
 	#endregion
 	#region Variables
 
+	public bool hasLevelEnd;
+
 	#endregion
 
 	#region Unity Methods
@@ -26,8 +28,10 @@ public class Reactor : Collidable {
 
 		if (otherReactor != null) {
 			if (objectPair.reactsWithList().Contains(otherReactor.objectPair)) {
-				if (objectPair.createdResult != null) {
-
+				if (hasLevelEnd) {
+					GameManager.instance.levelBuilder.addLevelEnd(transform.position);
+				} else if (otherReactor.hasLevelEnd) {
+					GameManager.instance.levelBuilder.addLevelEnd(otherReactor.transform.position);
 				}
 				Destroy(gameObject);
 				Destroy(coll.gameObject);
@@ -35,9 +39,10 @@ public class Reactor : Collidable {
 		}
 	}
 
-	public virtual void setBlockData(ObjectPair blockData) {
+	public virtual void setBlockData(ObjectPair blockData, bool _hasLevelEnd = false) {
 		objectPair = blockData;
 		name = blockData.name;
+		hasLevelEnd = _hasLevelEnd;
 		gameObject.GetComponent<SpriteRenderer>().sprite = blockData.sprite;
 	}
 }

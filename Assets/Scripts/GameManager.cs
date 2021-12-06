@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -11,32 +12,40 @@ public class GameManager : MonoBehaviour {
 			return;
 		}
 		instance = this;
+		SceneManager.sceneLoaded += startGame;
 	}
 	#endregion
 
 	#region Inspector Assignments
 
+	public LevelManager levelManager;
 	public LevelBuilder levelBuilder;
 	public LevelOverMenu levelOverMenu;
-	public Level level;
+	public PauseMenu pauseMenu;
+	public ThanksMenu thanksMenu;
 
 	#endregion
 	#region Variables
 
+	private Level level;
+
 	#endregion
 
 	#region Unity Methods
-	void Start() {
-		levelBuilder.buildLevel(level);
-		levelOverMenu.hideMenu();
-	}
-
 	void Update() {
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			pauseMenu.toggleMenu();
+		}
 		if (Input.GetKeyDown(KeyCode.R)) {
 			reloadLevel();
 		}
 	}
 	#endregion
+
+	public void startGame(Scene S, LoadSceneMode mode) {
+		SceneManager.sceneLoaded -= startGame;
+		nextLevel();
+	}
 
 	public void endLevel() {
 		levelOverMenu.showMenu();
@@ -48,10 +57,20 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void nextLevel() {
-		Debug.Log("Next Level");
+		level = levelManager.getNextLevel();
+		if (level != null) {
+			levelBuilder.buildLevel(level);
+			levelOverMenu.hideMenu();
+		} else {
+			showThanksMenu();
+		}
 	}
 
-	public void levelSelect() {
-		Debug.Log("Back to Level Select"); // probably just a scene
+	public void goToMainMenu() {
+		SceneManager.LoadScene(0);
+	}
+
+	public void showThanksMenu() {
+		thanksMenu.showMenu();
 	}
 }

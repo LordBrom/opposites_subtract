@@ -10,6 +10,7 @@ public class Level : ScriptableObject {
 	public string levelText;
 
 	public LevelObject[] levelObjects;
+	public Vector2[] walls;
 
 	private void OnValidate() {
 		int spawnCount = 0;
@@ -48,8 +49,10 @@ public struct LevelObject {
 }
 
 public enum LevelObjectType {
-	Wall,
 	Spawn,
 	LevelEnd,
-	Object
+	Object,
+	DeathTile,
+	InverseSpawn,
+	FakeWall,
 }

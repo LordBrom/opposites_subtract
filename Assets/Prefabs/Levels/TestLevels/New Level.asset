@@ -12,20 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3443cff602f87924185eb891013eacf8, type: 3}
   m_Name: New Level
   m_EditorClassIdentifier: 
-  width: 4
-  height: 4
+  width: 12
+  height: 10
   levelText: 
   levelObjects:
-  - levelObjectType: 0
-    objectPair: {fileID: 0}
-    hasLevelEnd: 0
-    x: 1
-    y: 3
-  - levelObjectType: 0
-    objectPair: {fileID: 0}
-    hasLevelEnd: 0
-    x: 2
-    y: 3
   - levelObjectType: 1
     objectPair: {fileID: 0}
     hasLevelEnd: 0
@@ -33,11 +23,11 @@ MonoBehaviour:
     y: 1
   - levelObjectType: 3
     objectPair: {fileID: 11400000, guid: ebff6dabf76acc14997e19470a193473, type: 2}
-    hasLevelEnd: 0
-    x: 1
-    y: 4
+    hasLevelEnd: 1
+    x: 5
+    y: 5
   - levelObjectType: 3
-    objectPair: {fileID: 11400000, guid: 4a62cac5b7a109541b0e7a3a2e78164f, type: 2}
+    objectPair: {fileID: 11400000, guid: d7b68dba45d661e4dbae4543e0555439, type: 2}
     hasLevelEnd: 0
-    x: 2
-    y: 4
+    x: 7
+    y: 7

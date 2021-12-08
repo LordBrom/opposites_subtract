@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8db9640f3f112d46a5eed2138c27253, type: 3}
+  m_Name: Visible
+  m_EditorClassIdentifier: 
+  name: Visible
+  sprite: {fileID: 21300000, guid: 5f210d92c7d7cf245b661067c6d6602d, type: 3}
+  reactsWith:
+  - {fileID: 11400000, guid: c7120523c95024946a3fdedce3f97529, type: 2}
+  - {fileID: 11400000, guid: bcff5fbbedaf8ba459ab40a39513633d, type: 2}
+  createdResult: {fileID: 0}

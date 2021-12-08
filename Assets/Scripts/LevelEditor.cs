@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
 
 public class LevelEditor : LevelBuilder {
 
@@ -31,9 +30,9 @@ public class LevelEditor : LevelBuilder {
 		level.width = int.Parse(widthInput.text);
 		level.height = int.Parse(heightInput.text);
 
-		EditorUtility.SetDirty(level);
-		AssetDatabase.SaveAssets();
-		AssetDatabase.Refresh();
+		//EditorUtility.SetDirty(level);
+		//AssetDatabase.SaveAssets();
+		//AssetDatabase.Refresh();
 	}
 
 	public void buildLevel() {

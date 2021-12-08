@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour {
 	public LevelOverMenu levelOverMenu;
 	public PauseMenu pauseMenu;
 	public ThanksMenu thanksMenu;
+	public LevelOverMenu deathMenu;
 
 	#endregion
 	#region Variables
@@ -51,8 +52,13 @@ public class GameManager : MonoBehaviour {
 		levelOverMenu.showMenu();
 	}
 
+	public void showDeathMenu() {
+		deathMenu.showMenu();
+	}
+
 	public void reloadLevel() {
 		levelOverMenu.hideMenu();
+		deathMenu.hideMenu();
 		levelBuilder.buildLevel(level);
 	}
 

@@ -10,14 +10,11 @@ public class PlayerController : Mover {
 	#endregion
 	#region Unity Methods
 
-	private void FixedUpdate() {
+	protected virtual void FixedUpdate() {
 		float x = Input.GetAxisRaw("Horizontal");
 		float y = Input.GetAxisRaw("Vertical");
 
 		updateMotor(new Vector2(x, y));
-	}
-	public void onSceneLoad() {
-		transform.position = GameObject.Find("SpawnPoint").transform.position;
 	}
 
 	#endregion

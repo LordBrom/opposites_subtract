@@ -32,7 +32,7 @@ public class HideableMenu : MonoBehaviour {
 		canvasGroup.blocksRaycasts = false;
 	}
 
-	public void toggleMenu() {
+	public virtual void toggleMenu() {
 		if (showing) {
 			hideMenu();
 		} else {

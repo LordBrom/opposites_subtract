@@ -20,7 +20,7 @@ public class Collidable : MonoBehaviour {
 		boxCollider2D = GetComponent<BoxCollider2D>();
 	}
 
-	void Update() {
+	protected virtual void Update() {
 		boxCollider2D.OverlapCollider(filter, hits);
 
 		foreach (Collider2D hit in hits) {

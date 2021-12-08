@@ -5,15 +5,34 @@ public class Reactor : Collidable {
 	#region Inspector Assignments
 
 	public ObjectPair objectPair;
+	public Vector2 soundRange;
 
 	#endregion
 	#region Variables
 
 	public bool hasLevelEnd;
 
+	private AudioSource pushSound;
+	private Vector3 lastPosition;
+
 	#endregion
 
 	#region Unity Methods
+
+	protected override void Start() {
+		pushSound = GetComponent<AudioSource>();
+		lastPosition = transform.position;
+		base.Start();
+	}
+
+	protected override void Update() {
+		if (transform.position != lastPosition && !pushSound.isPlaying) {
+			PlayPushSound();
+		}
+		lastPosition = transform.position;
+		pushSound.volume = GameManager.instance.soundManager.getEffectVolume();
+		base.Update();
+	}
 
 	private void OnValidate() {
 		if (objectPair != null) {
@@ -44,5 +63,14 @@ public class Reactor : Collidable {
 		name = blockData.name;
 		hasLevelEnd = _hasLevelEnd;
 		gameObject.GetComponent<SpriteRenderer>().sprite = blockData.sprite;
+	}
+
+	void PlayPushSound() {
+		float fromSeconds = soundRange.x;
+		float toSeconds = soundRange.y;
+
+		pushSound.time = fromSeconds;
+		pushSound.Play();
+		pushSound.SetScheduledEndTime(AudioSettings.dspTime + (toSeconds - fromSeconds));
 	}
 }

@@ -6,6 +6,8 @@ public class InversePlayerController : PlayerController {
 		float x = Input.GetAxisRaw("Horizontal");
 		float y = Input.GetAxisRaw("Vertical");
 
-		updateMotor(new Vector2(-x, -y));
+		if (GameManager.instance.levelActive) {
+			updateMotor(new Vector2(-x, -y));
+		}
 	}
 }

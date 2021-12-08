@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
 
 	#region Inspector Assignments
 
+	public SoundManager soundManager;
 	public LevelManager levelManager;
 	public LevelBuilder levelBuilder;
 	public LevelOverMenu levelOverMenu;
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour {
 	#region Variables
 
 	private Level level;
+	public bool levelActive;
 
 	#endregion
 
@@ -49,23 +51,33 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void endLevel() {
-		levelOverMenu.showMenu();
+		if (levelActive) {
+			levelActive = false;
+			soundManager.playLevelWin();
+			levelOverMenu.showMenu();
+		}
 	}
 
 	public void showDeathMenu() {
-		deathMenu.showMenu();
+		if (levelActive) {
+			levelActive = false;
+			soundManager.playLevelLoose();
+			deathMenu.showMenu();
+		}
 	}
 
 	public void reloadLevel() {
 		levelOverMenu.hideMenu();
 		deathMenu.hideMenu();
 		levelBuilder.buildLevel(level);
+		levelActive = true;
 	}
 
 	public void nextLevel() {
 		level = levelManager.getNextLevel();
 		if (level != null) {
 			levelBuilder.buildLevel(level);
+			levelActive = true;
 			levelOverMenu.hideMenu();
 		} else {
 			showThanksMenu();

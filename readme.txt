@@ -14,15 +14,9 @@ WASD or Arrow keys: Move the "you" block.
 R: Reloads the current level
 ESC: Opens pause menu
 
-My first game jam, with my first actual (not just tutorial) game.
+My first game jam, with my first actual (not just following a tutorial) game.
 
 Credits:
-	Level Design:
-		Ian Warnes
+	Level Design: Ian Warnes
 
-	Sounds:
-		mixkit.co
-			"We own the night (Roll Out)"
-			"Quick win video game notification"
-			"Sweeping the pavement"
-			"Laser game over"
+	Sounds: mixkit.co

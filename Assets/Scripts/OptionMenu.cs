@@ -20,9 +20,9 @@ public class OptionMenu : HideableMenu {
 
 		string[] data = PlayerPrefs.GetString(saveStr).Split('|');
 
-		masterVolumeSlider.value = int.Parse(data[0]);
-		musicVolumeSlider.value = int.Parse(data[1]);
-		effectVolumeSlider.value = int.Parse(data[2]);
+		masterVolumeSlider.value = float.Parse(data[0]);
+		musicVolumeSlider.value = float.Parse(data[1]);
+		effectVolumeSlider.value = float.Parse(data[2]);
 
 		setMasterVolume();
 		setMusicVolume();

@@ -18,9 +18,12 @@ MonoBehaviour:
   levelObjects:
   - levelObjectType: 1
     objectPair: {fileID: 0}
+    hasLevelEnd: 0
     x: 1
     y: 2
-  - levelObjectType: 2
+  - levelObjectType: 0
     objectPair: {fileID: 0}
+    hasLevelEnd: 0
     x: 3
     y: 2
+  walls: []

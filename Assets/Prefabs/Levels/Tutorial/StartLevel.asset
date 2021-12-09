@@ -16,18 +16,19 @@ MonoBehaviour:
   height: 3
   levelText: Simple as Black and White.
   levelObjects:
-  - levelObjectType: 3
+  - levelObjectType: 2
     objectPair: {fileID: 11400000, guid: d7b68dba45d661e4dbae4543e0555439, type: 2}
     hasLevelEnd: 1
     x: 4
     y: 2
-  - levelObjectType: 3
+  - levelObjectType: 2
     objectPair: {fileID: 11400000, guid: ebff6dabf76acc14997e19470a193473, type: 2}
     hasLevelEnd: 0
     x: 2
     y: 2
-  - levelObjectType: 1
+  - levelObjectType: 0
     objectPair: {fileID: 0}
     hasLevelEnd: 0
     x: 1
     y: 2
+  walls: []

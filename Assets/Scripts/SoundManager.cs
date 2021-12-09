@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
 
-	#region Inspector Assignments
-
 	public AudioSource backgroundMusic;
 	public AudioSource levelWin;
 	public AudioSource levelLoose;
@@ -11,11 +9,6 @@ public class SoundManager : MonoBehaviour {
 	public float masterVolume = 1.0f;
 	public float musicVolume = 1.0f;
 	public float effectVolume = 1.0f;
-
-	#endregion
-	#region Variables
-
-	#endregion
 
 	private void Update() {
 		masterVolume = Mathf.Clamp(masterVolume, 0f, 1f);

@@ -7,27 +7,52 @@ public class OptionMenu : HideableMenu {
 	public Slider musicVolumeSlider;
 	public Slider effectVolumeSlider;
 
-	protected override void Start() {
-		masterVolumeSlider.value = GameManager.instance.soundManager.masterVolume;
-		musicVolumeSlider.value = GameManager.instance.soundManager.musicVolume;
-		effectVolumeSlider.value = GameManager.instance.soundManager.effectVolume;
+	private string saveStr = "soundVolume";
 
+	protected override void Start() {
 		masterVolumeSlider.onValueChanged.AddListener(delegate { setMasterVolume(); });
 		musicVolumeSlider.onValueChanged.AddListener(delegate { setMusicVolume(); });
 		effectVolumeSlider.onValueChanged.AddListener(delegate { setEffectVolume(); });
+
+		if (!PlayerPrefs.HasKey(saveStr)) {
+			PlayerPrefs.SetString(saveStr, "1|1|1");
+		}
+
+		string[] data = PlayerPrefs.GetString(saveStr).Split('|');
+
+		masterVolumeSlider.value = int.Parse(data[0]);
+		musicVolumeSlider.value = int.Parse(data[1]);
+		effectVolumeSlider.value = int.Parse(data[2]);
+
+		setMasterVolume();
+		setMusicVolume();
+		setEffectVolume();
+
 		base.Start();
 	}
 
 	private void setMasterVolume() {
 		GameManager.instance.soundManager.masterVolume = masterVolumeSlider.value;
+		saveVolume();
 	}
 
 	private void setMusicVolume() {
 		GameManager.instance.soundManager.musicVolume = musicVolumeSlider.value;
+		saveVolume();
 	}
 
 	private void setEffectVolume() {
 		GameManager.instance.soundManager.effectVolume = effectVolumeSlider.value;
+		saveVolume();
+	}
+
+	private void saveVolume() {
+		string data = "";
+		data += GameManager.instance.soundManager.masterVolume.ToString() + "|";
+		data += GameManager.instance.soundManager.musicVolume.ToString() + "|";
+		data += GameManager.instance.soundManager.effectVolume.ToString();
+
+		PlayerPrefs.SetString(saveStr, data);
 	}
 
 

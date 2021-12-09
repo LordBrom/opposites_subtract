@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class LevelOverMenu : HideableMenu {
 
+	private void Update() {
+		if (showing && Input.GetKeyDown(KeyCode.E)) {
+			nextLevel();
+		}
+	}
+
 	public void mainMenu() {
 		GameManager.instance.goToMainMenu();
 	}

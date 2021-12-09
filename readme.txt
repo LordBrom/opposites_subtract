@@ -10,7 +10,7 @@ Jam Theme: Opposites
 
 
 Controls:
-WASD or Arrow keys: Move the "you" block.
+W/A/S/D or Arrow keys: Move the "you" block.
 R: Reloads the current level
 ESC: Opens pause menu
 

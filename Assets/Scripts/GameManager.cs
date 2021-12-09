@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour {
 	public LevelOverMenu levelOverMenu;
 	public PauseMenu pauseMenu;
 	public ThanksMenu thanksMenu;
-	public LevelOverMenu deathMenu;
+	public DeathMenu deathMenu;
 
 	#endregion
 	#region Variables

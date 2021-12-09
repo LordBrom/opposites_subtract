@@ -967,7 +967,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Reload
+  m_Text: Reload (r)
 --- !u!222 &179197446
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2466,8 +2466,8 @@ GameObject:
   - component: {fileID: 633979525}
   - component: {fileID: 633979529}
   - component: {fileID: 633979528}
-  - component: {fileID: 633979526}
   - component: {fileID: 633979527}
+  - component: {fileID: 633979526}
   m_Layer: 5
   m_Name: DeathMenu
   m_TagString: Untagged
@@ -2504,7 +2504,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 633979524}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7cadbb0892d01c42a02a76f7ef7ee15, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e406ad1e24d17448a3538105e81e583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!225 &633979527
@@ -3993,7 +3993,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Reload
+  m_Text: Reload (r)
 --- !u!222 &1129307804
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4665,7 +4665,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Next Level
+  m_Text: Next Level (e)
 --- !u!222 &1311343904
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5353,7 +5353,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 633979526}
-        m_TargetAssemblyTypeName: LevelOverMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: DeathMenu, Assembly-CSharp
         m_MethodName: mainMenu
         m_Mode: 1
         m_Arguments:
@@ -5736,10 +5736,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c155fd9fea4dcf94f9faef253da55336, type: 2}
   - {fileID: 11400000, guid: 3d4d7c79418f5624f8df7f119153d52f, type: 2}
   - {fileID: 11400000, guid: a113a86edfd515140a1142cb3ed9f13f, type: 2}
+  - {fileID: 11400000, guid: d179abc01f9f5484c990652446d76846, type: 2}
   - {fileID: 11400000, guid: 9ae48cf70b5dc7e4d8a56e6943065543, type: 2}
   - {fileID: 11400000, guid: 300895a92685ebd44a6fc4b2a6d7643b, type: 2}
   - {fileID: 11400000, guid: 8a00d11446d40bf4d8a15ba5efd80d27, type: 2}
-  - {fileID: 11400000, guid: d179abc01f9f5484c990652446d76846, type: 2}
   - {fileID: 11400000, guid: 0f5c7d760bccdc54fa3b5db359d2a8ec, type: 2}
 --- !u!1 &1769082528
 GameObject:
@@ -5892,7 +5892,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 633979526}
-        m_TargetAssemblyTypeName: LevelOverMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: DeathMenu, Assembly-CSharp
         m_MethodName: reloadLevel
         m_Mode: 1
         m_Arguments:

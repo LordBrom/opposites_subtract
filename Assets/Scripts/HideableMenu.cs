@@ -5,7 +5,7 @@ public class HideableMenu : MonoBehaviour {
 	#region Variables
 
 	private CanvasGroup canvasGroup;
-	private bool showing;
+	protected bool showing;
 
 	#endregion
 

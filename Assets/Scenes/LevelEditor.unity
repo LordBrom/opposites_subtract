@@ -636,12 +636,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallPrefab: {fileID: 4237336360454892223, guid: 81a01ef2ba8e27c4ba7c015e7d6cc733, type: 3}
   playerPrefab: {fileID: 5848662072514202188, guid: 89d9cfa5144d1f0489459311e0a92b70, type: 3}
+  inversePlayerPrefab: {fileID: 0}
   endPointPrefab: {fileID: 7758927272280024597, guid: 109554015d9db1844a48a0a287541e07, type: 3}
   blockPrefab: {fileID: 1704110699242098754, guid: c32fb02ea233db04184bee7137e52fbc, type: 3}
   floorPrefab: {fileID: 450840939711168872, guid: 4194907bd73d63d4285766a924b8baeb, type: 3}
+  spikePrefab: {fileID: 0}
+  fakeWallPrefab: {fileID: 0}
   levelText: {fileID: 0}
   widthInput: {fileID: 894995885}
   heightInput: {fileID: 1820932704}
+  level: {fileID: 11400000, guid: cc9e889a545d23e40a18c428fcecf4ef, type: 2}
 --- !u!4 &473407254
 Transform:
   m_ObjectHideFlags: 0

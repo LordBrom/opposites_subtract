@@ -26,6 +26,12 @@ public class Level : ScriptableObject {
 				endCount++;
 			}
 		}
+		for (int i = 0; i < walls.Length; i++) {
+			walls[i].x = Mathf.Clamp(walls[i].x, 1, width);
+			walls[i].y = Mathf.Clamp(walls[i].y, 1, height);
+		}
+
+
 
 		if (spawnCount > 1) {
 			Debug.LogError("Level can only contain one spawn point.");
@@ -37,6 +43,15 @@ public class Level : ScriptableObject {
 			Debug.LogWarning("Level must have one end point");
 		}
 	}
+
+	public void setFromCustom(LevelCustom customLevel) {
+		width = customLevel.width;
+		height = customLevel.height;
+		levelText = customLevel.levelText;
+		levelObjects = customLevel.levelObjects;
+		walls = customLevel.walls;
+	}
+
 }
 
 [System.Serializable]

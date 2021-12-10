@@ -17,6 +17,6 @@ ESC: Opens pause menu
 My first game jam, with my first actual (not just following a tutorial) game.
 
 Credits:
-	Level Design: Ian Warnes
+	Level Design: Nate Mills, Ian Warnes
 
 	Sounds: mixkit.co

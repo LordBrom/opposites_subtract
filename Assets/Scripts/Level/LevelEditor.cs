@@ -11,6 +11,8 @@ public class LevelEditor : LevelBuilder {
 	public InputField levelTextInput;
 	public Level level;
 
+	private Grid grid;
+
 	#endregion
 	#region Variables
 
@@ -18,43 +20,47 @@ public class LevelEditor : LevelBuilder {
 
 	#region Unity Methods
 	private void Start() {
-		widthInput.onValueChanged.AddListener(delegate { SaveLevel(); });
-		heightInput.onValueChanged.AddListener(delegate { SaveLevel(); });
-		levelTextInput.onValueChanged.AddListener(delegate { SaveLevel(); });
+		this.level = new Level();
 
+		this.widthInput.onValueChanged.AddListener(delegate { UpdateLevel(); });
+		this.heightInput.onValueChanged.AddListener(delegate { UpdateLevel(); });
+		this.levelTextInput.onValueChanged.AddListener(delegate { UpdateLevel(); });
 
-		//level.setFromCustom(levelSaveLoad.LoadLevelFromJson("new_level"));
+		this.widthInput.text = this.level.width.ToString();
+		this.heightInput.text = this.level.height.ToString();
+		this.levelTextInput.text = this.level.levelText;
 
-		widthInput.text = level.width.ToString();
-		heightInput.text = level.height.ToString();
-		levelTextInput.text = level.levelText;
-
-		BuildLevel();
+		BuildLevel(this.level, true);
 
 	}
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.R)) {
-			BuildLevel();
+			BuildLevel(this.level);
+		}
+
+		if (Input.GetMouseButtonDown(0) && this.grid.OnGrid()) {
+			this.grid.GetXY(out int x, out int y);
+			Debug.Log(Input.mousePosition + " " + x + " " + y);
+
+			this.level.AddWall(new Vector2(x, y));
+			UpdateLevel();
+
 		}
 	}
 	#endregion
 
-	public void SaveLevel() {
-		level.width = int.Parse(widthInput.text);
-		level.height = int.Parse(heightInput.text);
-		level.levelText = levelTextInput.text;
+	public void UpdateLevel() {
+		if (this.widthInput.text == "" || this.heightInput.text == "") {
+			return;
+		}
+		this.level.width = int.Parse(this.widthInput.text);
+		this.level.height = int.Parse(this.heightInput.text);
+		this.level.levelText = this.levelTextInput.text;
+		this.grid = new Grid(this.level.width, this.level.height, true);
+		BuildLevel(this.level, true);
 	}
 
-	public void BuildLevel() {
-		ClearLevel();
-
-		int width = int.Parse(widthInput.text);
-		int height = int.Parse(heightInput.text);
-
-		CreateBoarder(height, width);
-		FillLevelObjects(level.levelObjects);
-		SetCameraPosition(height, width);
-
-		//levelText.text = level.levelText;
+	public void SaveLevelButton() {
+		LevelSaveLoad.SaveLevelJson(this.level, "testLevel");
 	}
 }

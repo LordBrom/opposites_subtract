@@ -31,16 +31,20 @@ public class LevelBuilder : MonoBehaviour {
 
 	#endregion
 
-	public virtual void BuildLevel(Level level) {
+	public virtual void BuildLevel(Level level, bool buildMode = false) {
 		ClearLevel();
 
 		CreateBoarder(level.height, level.width);
 		FillWalls(level.walls);
 		FillLevelObjects(level.levelObjects);
-		SpawnPlayer(level.spawn);
+		if (!buildMode) {
+			SpawnPlayer(level.spawn);
+		}
 		SetCameraPosition(level.height, level.width);
 
-		levelText.text = level.levelText;
+		if (!buildMode) {
+			levelText.text = level.levelText;
+		}
 	}
 
 	public void AddLevelEnd(Vector2 pos) {
@@ -63,13 +67,19 @@ public class LevelBuilder : MonoBehaviour {
 		}
 	}
 
-	protected virtual void FillWalls(Vector2[] walls) {
+	protected virtual void FillWalls(List<Vector2> walls) {
+		if (walls == null) {
+			return;
+		}
 		foreach (Vector2 wall in walls) {
 			levelObjects.Add(Instantiate(wallPrefab, new Vector3(wall.x, wall.y, 1), Quaternion.identity, transform));
 		}
 	}
 
 	protected virtual void FillLevelObjects(LevelObject[] _levelObjects) {
+		if (_levelObjects == null) {
+			return;
+		}
 		foreach (LevelObject levelObject in _levelObjects) {
 			switch (levelObject.levelObjectType) {
 

@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
 	#region Variables
 
 	private Level level;
-	public bool levelActive;
+	public bool levelActive { get; private set; }
 
 	#endregion
 
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void NextLevel() {
-		string nextLevelJson = LevelSaveLoad.LoadLevelJson("second");
+		string nextLevelJson = LevelSaveLoad.LoadLevelJson("testLevel");
 		level.LoadFromJSON(nextLevelJson);
 
 		if (level != null) {

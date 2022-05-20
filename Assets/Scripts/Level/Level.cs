@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Level {
@@ -11,7 +12,11 @@ public class Level {
 
 	public Vector2 spawn;
 	public LevelObject[] levelObjects;
-	public Vector2[] walls;
+	public List<Vector2> walls;
+
+	public Level() {
+		walls = new List<Vector2>();
+	}
 
 	public string SaveToString() {
 		return JsonUtility.ToJson(this);
@@ -30,13 +35,21 @@ public class Level {
 				endCount++;
 			}
 		}
-		for (int i = 0; i < walls.Length; i++) {
-			walls[i].x = Mathf.Clamp(walls[i].x, 1, width);
-			walls[i].y = Mathf.Clamp(walls[i].y, 1, height);
-		}
 
 		if (endCount < 1) {
 			Debug.LogWarning("Level must have one end point");
+		}
+	}
+
+	public void AddWall(Vector2 wallPosition) {
+		if (!walls.Contains(wallPosition)) {
+			walls.Add(wallPosition);
+		}
+	}
+
+	public void RemoveWall(Vector2 wallPosition) {
+		if (walls.Contains(wallPosition)) {
+			walls.Remove(wallPosition);
 		}
 	}
 }

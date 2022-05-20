@@ -15,17 +15,17 @@ public class SoundManager : MonoBehaviour {
 		musicVolume = Mathf.Clamp(musicVolume, 0f, 1f);
 		effectVolume = Mathf.Clamp(effectVolume, 0f, 1f);
 
-		levelWin.volume = getEffectVolume();
-		levelLoose.volume = getEffectVolume();
-		backgroundMusic.volume = getMusicVolume();
+		levelWin.volume = GetEffectVolume();
+		levelLoose.volume = GetEffectVolume();
+		backgroundMusic.volume = GetMusicVolume();
 
 	}
 
-	public void playLevelWin() {
+	public void PlayLevelWin() {
 		levelWin.Play();
 	}
 
-	public void playLevelLoose() {
+	public void PlayLevelLoose() {
 		levelLoose.Play();
 		float fromSeconds = 0;
 		float toSeconds = 0.5f;
@@ -35,10 +35,10 @@ public class SoundManager : MonoBehaviour {
 		levelLoose.SetScheduledEndTime(AudioSettings.dspTime + (toSeconds - fromSeconds));
 	}
 
-	public float getEffectVolume() {
+	public float GetEffectVolume() {
 		return (masterVolume * effectVolume);
 	}
-	public float getMusicVolume() {
+	public float GetMusicVolume() {
 		return (masterVolume * musicVolume);
 	}
 }

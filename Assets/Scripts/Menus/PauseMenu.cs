@@ -7,32 +7,32 @@ public class PauseMenu : HideableMenu {
 
 	protected override void Start() {
 		base.Start();
-		mainPauseMenu.showMenu();
+		mainPauseMenu.ShowMenu();
 	}
 
-	public void resumeGame() {
-		hideMenu();
+	public void ResumeGame() {
+		HideMenu();
 	}
 
-	public void mainMenu() {
-		GameManager.instance.goToMainMenu();
+	public void MainMenu() {
+		GameManager.instance.GoToMainMenu();
 	}
 
-	public void quiteGame() {
+	public void QuiteGame() {
 		Application.Quit();
 	}
 
-	public void showOptions() {
-		mainPauseMenu.hideMenu();
-		optionsMenu.showMenu();
+	public void ShowOptions() {
+		mainPauseMenu.HideMenu();
+		optionsMenu.ShowMenu();
 	}
-	public void showMainPause() {
-		optionsMenu.hideMenu();
-		mainPauseMenu.showMenu();
+	public void ShowMainPause() {
+		optionsMenu.HideMenu();
+		mainPauseMenu.ShowMenu();
 	}
 
-	public override void toggleMenu() {
-		showMainPause();
-		base.toggleMenu();
+	public override void ToggleMenu() {
+		ShowMainPause();
+		base.ToggleMenu();
 	}
 }

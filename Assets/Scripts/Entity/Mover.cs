@@ -23,7 +23,7 @@ public class Mover : MonoBehaviour {
 
 	#endregion
 
-	protected virtual void updateMotor(Vector2 input) {
+	protected virtual void UpdateMotor(Vector2 input) {
 		moveDelta = new Vector2(input.x * speed, input.y * speed);
 
 		// Rotate

@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
 			return;
 		}
 		instance = this;
-		SceneManager.sceneLoaded += startGame;
+		SceneManager.sceneLoaded += StartGame;
 	}
 	#endregion
 
@@ -37,58 +37,58 @@ public class GameManager : MonoBehaviour {
 	#region Unity Methods
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.Escape)) {
-			pauseMenu.toggleMenu();
+			pauseMenu.ToggleMenu();
 		}
 		if (Input.GetKeyDown(KeyCode.R)) {
-			reloadLevel();
+			ReloadLevel();
 		}
 	}
 	#endregion
 
-	public void startGame(Scene S, LoadSceneMode mode) {
-		SceneManager.sceneLoaded -= startGame;
-		nextLevel();
+	public void StartGame(Scene S, LoadSceneMode mode) {
+		SceneManager.sceneLoaded -= StartGame;
+		NextLevel();
 	}
 
-	public void endLevel() {
+	public void EndLevel() {
 		if (levelActive) {
 			levelActive = false;
-			soundManager.playLevelWin();
-			levelOverMenu.showMenu();
+			soundManager.PlayLevelWin();
+			levelOverMenu.ShowMenu();
 		}
 	}
 
-	public void showDeathMenu() {
+	public void ShowDeathMenu() {
 		if (levelActive) {
 			levelActive = false;
-			soundManager.playLevelLoose();
-			deathMenu.showMenu();
+			soundManager.PlayLevelLoose();
+			deathMenu.ShowMenu();
 		}
 	}
 
-	public void reloadLevel() {
-		levelOverMenu.hideMenu();
-		deathMenu.hideMenu();
-		levelBuilder.buildLevel(level);
+	public void ReloadLevel() {
+		levelOverMenu.HideMenu();
+		deathMenu.HideMenu();
+		levelBuilder.BuildLevel(level);
 		levelActive = true;
 	}
 
-	public void nextLevel() {
-		level = levelManager.getNextLevel();
+	public void NextLevel() {
+		level = levelManager.GetNextLevel();
 		if (level != null) {
-			levelBuilder.buildLevel(level);
+			levelBuilder.BuildLevel(level);
 			levelActive = true;
-			levelOverMenu.hideMenu();
+			levelOverMenu.HideMenu();
 		} else {
-			showThanksMenu();
+			ShowThanksMenu();
 		}
 	}
 
-	public void goToMainMenu() {
+	public void GoToMainMenu() {
 		SceneManager.LoadScene(0);
 	}
 
-	public void showThanksMenu() {
-		thanksMenu.showMenu();
+	public void ShowThanksMenu() {
+		thanksMenu.ShowMenu();
 	}
 }

@@ -31,22 +31,22 @@ public class LevelBuilder : MonoBehaviour {
 
 	#endregion
 
-	public virtual void buildLevel(Level level) {
-		clearLevel();
+	public virtual void BuildLevel(Level level) {
+		ClearLevel();
 
-		createBoarder(level.height, level.width);
-		fillWalls(level.walls);
-		fillLevelObjects(level.levelObjects);
-		setCameraPosition(level.height, level.width);
+		CreateBoarder(level.height, level.width);
+		FillWalls(level.walls);
+		FillLevelObjects(level.levelObjects);
+		SetCameraPosition(level.height, level.width);
 
 		levelText.text = level.levelText;
 	}
 
-	public void addLevelEnd(Vector2 pos) {
+	public void AddLevelEnd(Vector2 pos) {
 		levelObjects.Add(Instantiate(endPointPrefab, pos, Quaternion.identity, transform));
 	}
 
-	protected virtual void createBoarder(int height, int width) {
+	protected virtual void CreateBoarder(int height, int width) {
 		GameObject newFloor = Instantiate(floorPrefab, transform);
 		newFloor.transform.position = new Vector3(((float)width + 1) / 2, ((float)height + 1) / 2, 5);
 		newFloor.transform.localScale = new Vector3((float)width + 2, (float)height + 2, 1);
@@ -62,40 +62,40 @@ public class LevelBuilder : MonoBehaviour {
 		}
 	}
 
-	protected virtual void fillWalls(Vector2[] walls) {
+	protected virtual void FillWalls(Vector2[] walls) {
 		foreach (Vector2 wall in walls) {
 			levelObjects.Add(Instantiate(wallPrefab, new Vector3(wall.x, wall.y, 1), Quaternion.identity, transform));
 		}
 	}
 
-	protected virtual void fillLevelObjects(LevelObject[] _levelObjects) {
+	protected virtual void FillLevelObjects(LevelObject[] _levelObjects) {
 		foreach (LevelObject levelObject in _levelObjects) {
 			switch (levelObject.levelObjectType) {
 
 				case LevelObjectType.Spawn:
-					levelObjects.Add(Instantiate(playerPrefab, new Vector3(levelObject.x, levelObject.y, 4), Quaternion.identity, transform));
+					levelObjects.Add(Instantiate(playerPrefab, new Vector3(levelObject.position.x, levelObject.position.y, 4), Quaternion.identity, transform));
 					break;
 
 				case LevelObjectType.LevelEnd:
-					levelObjects.Add(Instantiate(endPointPrefab, new Vector2(levelObject.x, levelObject.y), Quaternion.identity, transform));
+					levelObjects.Add(Instantiate(endPointPrefab, new Vector2(levelObject.position.x, levelObject.position.y), Quaternion.identity, transform));
 					break;
 
 				case LevelObjectType.Object:
-					GameObject newObject = Instantiate(blockPrefab, new Vector3(levelObject.x, levelObject.y, 4), Quaternion.identity, transform);
+					GameObject newObject = Instantiate(blockPrefab, new Vector3(levelObject.position.x, levelObject.position.y, 4), Quaternion.identity, transform);
 					newObject.GetComponent<Reactor>().setBlockData(levelObject.objectPair, levelObject.hasLevelEnd);
 					levelObjects.Add(newObject);
 					break;
 
 				case LevelObjectType.DeathTile:
-					levelObjects.Add(Instantiate(spikePrefab, new Vector2(levelObject.x, levelObject.y), Quaternion.identity, transform));
+					levelObjects.Add(Instantiate(spikePrefab, new Vector2(levelObject.position.x, levelObject.position.y), Quaternion.identity, transform));
 					break;
 
 				case LevelObjectType.InverseSpawn:
-					levelObjects.Add(Instantiate(inversePlayerPrefab, new Vector3(levelObject.x, levelObject.y, 4), Quaternion.identity, transform));
+					levelObjects.Add(Instantiate(inversePlayerPrefab, new Vector3(levelObject.position.x, levelObject.position.y, 4), Quaternion.identity, transform));
 					break;
 
 				case LevelObjectType.FakeWall:
-					levelObjects.Add(Instantiate(fakeWallPrefab, new Vector3(levelObject.x, levelObject.y, 3), Quaternion.identity, transform));
+					levelObjects.Add(Instantiate(fakeWallPrefab, new Vector3(levelObject.position.x, levelObject.position.y, 3), Quaternion.identity, transform));
 					break;
 
 				default:
@@ -104,7 +104,7 @@ public class LevelBuilder : MonoBehaviour {
 		}
 	}
 
-	protected virtual void setCameraPosition(int height, int width) {
+	protected virtual void SetCameraPosition(int height, int width) {
 		cam.transform.position = new Vector3(((float)width + 1) / 2, ((float)height + 1) / 2, -10);
 
 
@@ -118,7 +118,7 @@ public class LevelBuilder : MonoBehaviour {
 		cam.orthographicSize = desiredScale;
 	}
 
-	protected virtual void clearLevel() {
+	protected virtual void ClearLevel() {
 		foreach (GameObject levelObject in levelObjects) {
 			Destroy(levelObject);
 		}

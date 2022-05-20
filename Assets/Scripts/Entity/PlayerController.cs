@@ -15,7 +15,7 @@ public class PlayerController : Mover {
 		float y = Input.GetAxisRaw("Vertical");
 
 		if (GameManager.instance.levelActive) {
-			updateMotor(new Vector2(x, y));
+			UpdateMotor(new Vector2(x, y));
 		}
 	}
 

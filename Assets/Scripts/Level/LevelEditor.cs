@@ -20,42 +20,42 @@ public class LevelEditor : LevelBuilder {
 
 	#region Unity Methods
 	private void Start() {
-		widthInput.onValueChanged.AddListener(delegate { saveLevel(); });
-		heightInput.onValueChanged.AddListener(delegate { saveLevel(); });
-		levelTextInput.onValueChanged.AddListener(delegate { saveLevel(); });
+		widthInput.onValueChanged.AddListener(delegate { SaveLevel(); });
+		heightInput.onValueChanged.AddListener(delegate { SaveLevel(); });
+		levelTextInput.onValueChanged.AddListener(delegate { SaveLevel(); });
 
 
-		level.setFromCustom(levelSaveLoad.LoadLevelFromJson("new_level"));
+		//level.setFromCustom(levelSaveLoad.LoadLevelFromJson("new_level"));
 
 		widthInput.text = level.width.ToString();
 		heightInput.text = level.height.ToString();
 		levelTextInput.text = level.levelText;
 
-		buildLevel();
+		BuildLevel();
 
 	}
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.R)) {
-			buildLevel();
+			BuildLevel();
 		}
 	}
 	#endregion
 
-	public void saveLevel() {
+	public void SaveLevel() {
 		level.width = int.Parse(widthInput.text);
 		level.height = int.Parse(heightInput.text);
 		level.levelText = levelTextInput.text;
 	}
 
-	public void buildLevel() {
-		clearLevel();
+	public void BuildLevel() {
+		ClearLevel();
 
 		int width = int.Parse(widthInput.text);
 		int height = int.Parse(heightInput.text);
 
-		createBoarder(height, width);
-		fillLevelObjects(level.levelObjects);
-		setCameraPosition(height, width);
+		CreateBoarder(height, width);
+		FillLevelObjects(level.levelObjects);
+		SetCameraPosition(height, width);
 
 		//levelText.text = level.levelText;
 	}

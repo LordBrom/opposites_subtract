@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour {
 
 	#endregion
 
-	public Level getNextLevel() {
+	public Level GetNextLevel() {
 		currentLevel++;
 		if (currentLevel < levels.Length) {
 			return levels[currentLevel];

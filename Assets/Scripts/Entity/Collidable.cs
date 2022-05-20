@@ -24,12 +24,12 @@ public class Collidable : MonoBehaviour {
 		boxCollider2D.OverlapCollider(filter, hits);
 
 		foreach (Collider2D hit in hits) {
-			onCollide(hit);
+			OnCollide(hit);
 		}
 	}
 	#endregion
 
-	protected virtual void onCollide(Collider2D coll) {
-		Debug.LogWarning("onCollide not implemented for " + this.name + ". Hitting " + coll.name);
+	protected virtual void OnCollide(Collider2D coll) {
+		Debug.LogWarning("OnCollide not implemented for " + this.name + ". Hitting " + coll.name);
 	}
 }

@@ -4,19 +4,19 @@ public class LevelOverMenu : HideableMenu {
 
 	private void Update() {
 		if (showing && Input.GetKeyDown(KeyCode.E)) {
-			nextLevel();
+			NextLevel();
 		}
 	}
 
 	public void mainMenu() {
-		GameManager.instance.goToMainMenu();
+		GameManager.instance.GoToMainMenu();
 	}
 
-	public void reloadLevel() {
-		GameManager.instance.reloadLevel();
+	public void ReloadLevel() {
+		GameManager.instance.ReloadLevel();
 	}
 
-	public void nextLevel() {
-		GameManager.instance.nextLevel();
+	public void NextLevel() {
+		GameManager.instance.NextLevel();
 	}
 }

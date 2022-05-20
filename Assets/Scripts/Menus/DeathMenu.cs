@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class DeathMenu : HideableMenu {
 
-	public void mainMenu() {
-		GameManager.instance.goToMainMenu();
+	public void MainMenu() {
+		GameManager.instance.GoToMainMenu();
 	}
 
-	public void reloadLevel() {
-		GameManager.instance.reloadLevel();
+	public void ReloadLevel() {
+		GameManager.instance.ReloadLevel();
 	}
 }

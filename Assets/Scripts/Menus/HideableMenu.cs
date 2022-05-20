@@ -15,28 +15,28 @@ public class HideableMenu : MonoBehaviour {
 	}
 
 	protected virtual void Start() {
-		hideMenu();
+		HideMenu();
 	}
 	#endregion
 
-	public void showMenu() {
+	public void ShowMenu() {
 		showing = true;
 		canvasGroup.alpha = 1;
 		canvasGroup.interactable = true;
 		canvasGroup.blocksRaycasts = true;
 	}
-	public void hideMenu() {
+	public void HideMenu() {
 		showing = false;
 		canvasGroup.alpha = 0;
 		canvasGroup.interactable = false;
 		canvasGroup.blocksRaycasts = false;
 	}
 
-	public virtual void toggleMenu() {
+	public virtual void ToggleMenu() {
 		if (showing) {
-			hideMenu();
+			HideMenu();
 		} else {
-			showMenu();
+			ShowMenu();
 		}
 	}
 }

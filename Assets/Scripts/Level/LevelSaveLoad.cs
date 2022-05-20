@@ -30,8 +30,8 @@ public class LevelSaveLoad {
 		System.IO.File.WriteAllText(Application.persistentDataPath + "/" + levelName + ".json", levelJson);
 	}
 
-	public LevelCustom LoadLevelFromJson(string levelName) {
-		string levelJson = System.IO.File.ReadAllText(Application.persistentDataPath + "/" + levelName + ".json");
-		return Newtonsoft.Json.JsonConvert.DeserializeObject<LevelCustom>(levelJson);
-	}
+	//public LevelCustom LoadLevelFromJson(string levelName) {
+	//	string levelJson = System.IO.File.ReadAllText(Application.persistentDataPath + "/" + levelName + ".json");
+	//	return Newtonsoft.Json.JsonConvert.DeserializeObject<LevelCustom>(levelJson);
+	//}
 }

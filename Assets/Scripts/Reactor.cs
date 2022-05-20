@@ -30,7 +30,7 @@ public class Reactor : Collidable {
 			PlayPushSound();
 		}
 		lastPosition = transform.position;
-		pushSound.volume = GameManager.instance.soundManager.getEffectVolume();
+		pushSound.volume = GameManager.instance.soundManager.GetEffectVolume();
 		base.Update();
 	}
 
@@ -42,15 +42,15 @@ public class Reactor : Collidable {
 
 	#endregion
 
-	protected override void onCollide(Collider2D coll) {
+	protected override void OnCollide(Collider2D coll) {
 		Reactor otherReactor = coll.gameObject.GetComponent<Reactor>();
 
 		if (otherReactor != null) {
 			if (objectPair.reactsWithList().Contains(otherReactor.objectPair)) {
 				if (hasLevelEnd) {
-					GameManager.instance.levelBuilder.addLevelEnd(transform.position);
+					GameManager.instance.levelBuilder.AddLevelEnd(transform.position);
 				} else if (otherReactor.hasLevelEnd) {
-					GameManager.instance.levelBuilder.addLevelEnd(otherReactor.transform.position);
+					GameManager.instance.levelBuilder.AddLevelEnd(otherReactor.transform.position);
 				}
 				Destroy(gameObject);
 				Destroy(coll.gameObject);

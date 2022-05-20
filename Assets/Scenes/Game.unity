@@ -5758,7 +5758,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1740599516}
   - component: {fileID: 1740599515}
-  - component: {fileID: 1740599517}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5779,7 +5778,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundManager: {fileID: 212162892}
-  levelManager: {fileID: 1740599517}
   levelBuilder: {fileID: 1031551766}
   levelOverMenu: {fileID: 1834370695}
   pauseMenu: {fileID: 1011694791}
@@ -5800,28 +5798,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1740599517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1740599514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ad697e6ed7568041817d259fcb75a8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levels:
-  - {fileID: 11400000, guid: c155fd9fea4dcf94f9faef253da55336, type: 2}
-  - {fileID: 11400000, guid: 3d4d7c79418f5624f8df7f119153d52f, type: 2}
-  - {fileID: 11400000, guid: a113a86edfd515140a1142cb3ed9f13f, type: 2}
-  - {fileID: 11400000, guid: d179abc01f9f5484c990652446d76846, type: 2}
-  - {fileID: 11400000, guid: 9ae48cf70b5dc7e4d8a56e6943065543, type: 2}
-  - {fileID: 11400000, guid: 300895a92685ebd44a6fc4b2a6d7643b, type: 2}
-  - {fileID: 11400000, guid: 8a00d11446d40bf4d8a15ba5efd80d27, type: 2}
-  - {fileID: 11400000, guid: 177422b15e31a2748a8b5bbfd0155747, type: 2}
-  - {fileID: 11400000, guid: 0f5c7d760bccdc54fa3b5db359d2a8ec, type: 2}
 --- !u!1 &1769082528
 GameObject:
   m_ObjectHideFlags: 0

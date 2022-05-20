@@ -4,34 +4,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class LevelSaveLoad {
+public static class LevelSaveLoad {
 
 	#region Inspector Assignments
 
 	#endregion
 	#region Variables
 
+	private static string rootLevelPath = Application.dataPath + "/Levels/";
+
 	#endregion
 
-	#region Unity Methods
-	void Start() {
-
-	}
-
-	void Update() {
-
-	}
-	#endregion
-
-	public void SaveLevelAsJson(Level level, string levelName) {
+	public static void SaveLevelJson(Level level, string levelName) {
 		string levelJson = JsonUtility.ToJson(level);
 		Debug.Log(levelJson);
 		Debug.Log(Application.persistentDataPath);
 		System.IO.File.WriteAllText(Application.persistentDataPath + "/" + levelName + ".json", levelJson);
 	}
 
-	//public LevelCustom LoadLevelFromJson(string levelName) {
-	//	string levelJson = System.IO.File.ReadAllText(Application.persistentDataPath + "/" + levelName + ".json");
-	//	return Newtonsoft.Json.JsonConvert.DeserializeObject<LevelCustom>(levelJson);
-	//}
+	public static string LoadLevelJson(string levelName) {
+		return System.IO.File.ReadAllText(rootLevelPath + levelName + ".json");
+	}
 }

@@ -14,8 +14,6 @@ public class LevelEditor : LevelBuilder {
 	#endregion
 	#region Variables
 
-	private LevelSaveLoad levelSaveLoad = new LevelSaveLoad();
-
 	#endregion
 
 	#region Unity Methods

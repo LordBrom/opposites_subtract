@@ -4,7 +4,7 @@ public class Reactor : Collidable {
 
 	#region Inspector Assignments
 
-	public ObjectPair objectPair;
+	public string collisionID;
 	public Vector2 soundRange;
 
 	#endregion
@@ -35,9 +35,6 @@ public class Reactor : Collidable {
 	}
 
 	private void OnValidate() {
-		if (objectPair != null) {
-			setBlockData(ScriptableObject.Instantiate(objectPair));
-		}
 	}
 
 	#endregion
@@ -46,8 +43,8 @@ public class Reactor : Collidable {
 		Reactor otherReactor = coll.gameObject.GetComponent<Reactor>();
 
 		if (otherReactor != null) {
-			if (objectPair.reactsWithList().Contains(otherReactor.objectPair)) {
-				if (hasLevelEnd) {
+			if (this.collisionID == otherReactor.collisionID) {
+				if (this.hasLevelEnd) {
 					GameManager.instance.levelBuilder.AddLevelEnd(transform.position);
 				} else if (otherReactor.hasLevelEnd) {
 					GameManager.instance.levelBuilder.AddLevelEnd(otherReactor.transform.position);
@@ -58,11 +55,11 @@ public class Reactor : Collidable {
 		}
 	}
 
-	public virtual void setBlockData(ObjectPair blockData, bool _hasLevelEnd = false) {
-		objectPair = blockData;
-		name = blockData.name;
-		hasLevelEnd = _hasLevelEnd;
-		gameObject.GetComponent<SpriteRenderer>().sprite = blockData.sprite;
+	public virtual void setBlockData(LevelObject levelObject) {
+		this.collisionID = levelObject.collisionID;
+		this.name = levelObject.objectPair.name;
+		this.hasLevelEnd = levelObject.hasLevelEnd;
+		gameObject.GetComponent<SpriteRenderer>().sprite = levelObject.objectPair.sprite;
 	}
 
 	void PlayPushSound() {

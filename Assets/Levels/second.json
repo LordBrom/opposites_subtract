@@ -1,14 +1,16 @@
 {
-	"width": 3,
-	"height": 3,
-	"levelText": "Test Level",
-	"nextLevel": "second",
+	"width": 5,
+	"height": 5,
+	"levelText": "",
+	"nextLevel": "",
 	"spawn": {
 		"x": 3,
 		"y": 2
 	},
 	"levelObjects": [{
 		"levelObjectType": 1,
+		"collisionID": "",
+		"hasLevelEnd": 0,
 		"position": {
 			"x": 1,
 			"y": 2

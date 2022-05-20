@@ -37,6 +37,7 @@ public class LevelBuilder : MonoBehaviour {
 		CreateBoarder(level.height, level.width);
 		FillWalls(level.walls);
 		FillLevelObjects(level.levelObjects);
+		SpawnPlayer(level.spawn);
 		SetCameraPosition(level.height, level.width);
 
 		levelText.text = level.levelText;
@@ -72,22 +73,18 @@ public class LevelBuilder : MonoBehaviour {
 		foreach (LevelObject levelObject in _levelObjects) {
 			switch (levelObject.levelObjectType) {
 
-				case LevelObjectType.Spawn:
-					levelObjects.Add(Instantiate(playerPrefab, new Vector3(levelObject.position.x, levelObject.position.y, 4), Quaternion.identity, transform));
-					break;
-
 				case LevelObjectType.LevelEnd:
-					levelObjects.Add(Instantiate(endPointPrefab, new Vector2(levelObject.position.x, levelObject.position.y), Quaternion.identity, transform));
+					levelObjects.Add(Instantiate(endPointPrefab, levelObject.position, Quaternion.identity, transform));
 					break;
 
 				case LevelObjectType.Object:
 					GameObject newObject = Instantiate(blockPrefab, new Vector3(levelObject.position.x, levelObject.position.y, 4), Quaternion.identity, transform);
-					newObject.GetComponent<Reactor>().setBlockData(levelObject.objectPair, levelObject.hasLevelEnd);
+					newObject.GetComponent<Reactor>().setBlockData(levelObject);
 					levelObjects.Add(newObject);
 					break;
 
 				case LevelObjectType.DeathTile:
-					levelObjects.Add(Instantiate(spikePrefab, new Vector2(levelObject.position.x, levelObject.position.y), Quaternion.identity, transform));
+					levelObjects.Add(Instantiate(spikePrefab, levelObject.position, Quaternion.identity, transform));
 					break;
 
 				case LevelObjectType.InverseSpawn:
@@ -102,6 +99,10 @@ public class LevelBuilder : MonoBehaviour {
 					break;
 			}
 		}
+	}
+
+	protected virtual void SpawnPlayer(Vector2 spawn) {
+		levelObjects.Add(Instantiate(playerPrefab, new Vector3(spawn.x, spawn.y, 4), Quaternion.identity, transform));
 	}
 
 	protected virtual void SetCameraPosition(int height, int width) {

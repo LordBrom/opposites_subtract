@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour {
 	#region Inspector Assignments
 
 	public SoundManager soundManager;
-	public LevelManager levelManager;
 	public LevelBuilder levelBuilder;
+
 	public LevelOverMenu levelOverMenu;
 	public PauseMenu pauseMenu;
 	public ThanksMenu thanksMenu;
@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour {
 
 	public void StartGame(Scene S, LoadSceneMode mode) {
 		SceneManager.sceneLoaded -= StartGame;
+		level = new Level();
 		NextLevel();
 	}
 
@@ -74,7 +75,9 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void NextLevel() {
-		level = levelManager.GetNextLevel();
+		string nextLevelJson = LevelSaveLoad.LoadLevelJson("second");
+		level.LoadFromJSON(nextLevelJson);
+
 		if (level != null) {
 			levelBuilder.BuildLevel(level);
 			levelActive = true;

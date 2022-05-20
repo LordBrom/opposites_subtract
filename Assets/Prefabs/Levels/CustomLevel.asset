@@ -15,5 +15,10 @@ MonoBehaviour:
   width: 12
   height: 10
   levelText: 
-  levelObjects: []
+  nextLevel: 
+  levelObjects:
+  - levelObjectType: 0
+    objectPair: {fileID: 0}
+    hasLevelEnd: 0
+    position: {x: 1, y: 1}
   walls: []

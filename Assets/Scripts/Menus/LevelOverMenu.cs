@@ -8,7 +8,7 @@ public class LevelOverMenu : HideableMenu {
 		}
 	}
 
-	public void mainMenu() {
+	public void MainMenu() {
 		GameManager.instance.GoToMainMenu();
 	}
 

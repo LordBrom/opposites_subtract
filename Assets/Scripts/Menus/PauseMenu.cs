@@ -18,7 +18,7 @@ public class PauseMenu : HideableMenu {
 		GameManager.instance.GoToMainMenu();
 	}
 
-	public void QuiteGame() {
+	public void QuitGame() {
 		Application.Quit();
 	}
 

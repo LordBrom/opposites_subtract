@@ -1,1 +1,1 @@
-{"width":12,"height":5,"levelText":"This is a test!","nextLevel":"","spawn":{"x":0.0,"y":0.0},"levelObjects":[],"walls":[]}
+{"width":12,"height":5,"levelText":"YAYA!?!!!","nextLevel":"","spawn":{"x":1.0,"y":1.0},"levelObjects":[],"walls":[{"x":2.0,"y":1.0},{"x":2.0,"y":2.0},{"x":2.0,"y":3.0},{"x":2.0,"y":4.0},{"x":4.0,"y":5.0},{"x":4.0,"y":4.0},{"x":4.0,"y":3.0},{"x":4.0,"y":2.0}]}

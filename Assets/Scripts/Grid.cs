@@ -98,10 +98,16 @@ public class GridTile {
 	public int x;
 	public int y;
 
+	public bool hasWall;
+	public bool hasOther;
+
 	public GridTile(Grid grid, int x, int y) {
 		this.grid = grid;
 		this.x = x;
 		this.y = y;
+
+		this.hasWall = false;
+		this.hasOther = false;
 	}
 	public override string ToString() {
 		return x + " " + y;

@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void NextLevel() {
-		string nextLevelJson = LevelSaveLoad.LoadLevelJson("testLevel");
+		string nextLevelJson = LevelSaveLoad.LoadLevelJson("New_Level");
 		level.LoadFromJSON(nextLevelJson);
 
 		if (level != null) {

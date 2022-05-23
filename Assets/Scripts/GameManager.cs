@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour {
 	#endregion
 	#region Variables
 
-	private Level level;
+	public Level level;
 	public bool levelActive { get; private set; }
 
 	#endregion
@@ -40,15 +40,15 @@ public class GameManager : MonoBehaviour {
 			pauseMenu.ToggleMenu();
 		}
 		if (Input.GetKeyDown(KeyCode.R)) {
-			ReloadLevel();
+			LoadLevel();
 		}
 	}
 	#endregion
 
 	public void StartGame(Scene S, LoadSceneMode mode) {
 		SceneManager.sceneLoaded -= StartGame;
-		level = new Level();
-		NextLevel();
+		level = LevelManager.activeLevel;
+		LoadLevel();
 	}
 
 	public void EndLevel() {
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	public void ReloadLevel() {
+	public void LoadLevel() {
 		levelOverMenu.HideMenu();
 		deathMenu.HideMenu();
 		levelBuilder.BuildLevel(level);
@@ -75,15 +75,11 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void NextLevel() {
-		string nextLevelJson = LevelSaveLoad.LoadLevelJson("New_Level");
-		level.LoadFromJSON(nextLevelJson);
-
-		if (level != null) {
-			levelBuilder.BuildLevel(level);
-			levelActive = true;
-			levelOverMenu.HideMenu();
-		} else {
+		this.level = LevelManager.GetNextLevel();
+		if (this.level == null) {
 			ShowThanksMenu();
+		} else {
+			LoadLevel();
 		}
 	}
 
@@ -94,4 +90,5 @@ public class GameManager : MonoBehaviour {
 	public void ShowThanksMenu() {
 		thanksMenu.ShowMenu();
 	}
+
 }

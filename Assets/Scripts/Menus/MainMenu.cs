@@ -1,10 +1,16 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
+	[SerializeField]
+	private LevelSelectMenu levelSelectMenu;
+
 	public void StartGame() {
-		SceneManager.LoadScene(1);
+		levelSelectMenu.ShowLevelSelectMenu();
+	}
+
+	public void LevelEditor() {
+		levelSelectMenu.ShowLevelSelectMenu();
 	}
 
 	public void QuitGame() {

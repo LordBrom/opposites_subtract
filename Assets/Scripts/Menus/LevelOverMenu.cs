@@ -13,7 +13,7 @@ public class LevelOverMenu : HideableMenu {
 	}
 
 	public void ReloadLevel() {
-		GameManager.instance.ReloadLevel();
+		GameManager.instance.LoadLevel();
 	}
 
 	public void NextLevel() {

@@ -22,6 +22,13 @@ public class Level {
 		spawn = new Vector2(1, 1);
 	}
 
+	public Level(string levelJson) {
+		levelObjects = new List<LevelObject>();
+		walls = new List<Vector2>();
+		spawn = new Vector2(1, 1);
+		this.LoadFromJSON(levelJson);
+	}
+
 	public string SaveToString() {
 		return JsonUtility.ToJson(this);
 	}

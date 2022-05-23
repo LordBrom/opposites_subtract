@@ -13,11 +13,11 @@ public class Grid {
 
 	#endregion
 
-	public Grid(int width, int height, bool showDebug = false) {
+	public Grid(int width, int height, Vector3 originPosition, bool showDebug = false) {
 		this.width = width;
 		this.height = height;
 		this.cellSize = 1;
-		this.originPosition = new Vector3(0.5f, 0.5f, 0);
+		this.originPosition = originPosition;
 
 		this.gridArray = new GridTile[width, height];
 		for (int x = 0; x < this.gridArray.GetLength(0); x++) {

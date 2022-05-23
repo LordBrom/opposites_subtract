@@ -7,6 +7,6 @@ public class DeathMenu : HideableMenu {
 	}
 
 	public void ReloadLevel() {
-		GameManager.instance.ReloadLevel();
+		GameManager.instance.LoadLevel();
 	}
 }

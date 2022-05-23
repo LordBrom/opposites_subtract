@@ -1,19 +1,20 @@
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour {
+public static class LevelManager {
 
 	#region Inspector Assignments
 
-	public Level[] levels;
+	public static Level[] levels;
+	public static Level activeLevel;
 
 	#endregion
 	#region Variables
 
-	private int currentLevel = -1;
+	private static int currentLevel = -1;
 
 	#endregion
 
-	public Level GetNextLevel() {
+	public static Level GetNextLevel() {
 		currentLevel++;
 		if (currentLevel < levels.Length) {
 			return levels[currentLevel];

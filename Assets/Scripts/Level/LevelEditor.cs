@@ -61,53 +61,55 @@ public class LevelEditor : LevelBuilder {
 
 		if (this.hasActiveTile && Input.GetMouseButtonDown(0) && this.grid.OnGrid()) {
 			this.grid.GetXY(out int x, out int y);
+			GridTile clickedTile = this.grid.GetGridTile(x, y);
+
 			// Adding 1 because the "boarder" is 0
 			x += 1;
 			y += 1;
+			if (clickedTile != null) {
 
-			GridTile clickedTile = this.grid.GetGridTile(x, y);
 
-			switch (this.activeTileType) {
-				case LevelObjectType.Spawn:
-					Debug.Log(clickedTile);
-					if (!clickedTile.hasWall && !clickedTile.hasOther) {
-						this.level.spawn = new Vector2(x, y);
-						clickedTile.hasOther = true;
-					}
-					break;
-				case LevelObjectType.wall:
-					if (!clickedTile.hasOther) {
-						this.level.ToggleWall(new Vector2(x, y));
-						clickedTile.hasWall = true;
-					}
-					break;
-				case LevelObjectType.LevelEnd:
-				case LevelObjectType.DeathTile:
-				case LevelObjectType.InverseSpawn:
-				case LevelObjectType.FakeWall:
-					if (!clickedTile.hasWall) {
-						LevelObject newObject = new LevelObject();
-						newObject.levelObjectType = this.activeTileType;
-						newObject.position = new Vector2(x, y);
-						this.level.levelObjects.Add(newObject);
-						clickedTile.hasOther = true;
-					}
-					break;
-				case LevelObjectType.Object:
-					if (!clickedTile.hasWall) {
-						LevelObject newObjectPair = new LevelObject();
-						newObjectPair.levelObjectType = this.activeTileType;
-						newObjectPair.objectPair = this.activeObjectPair;
-						newObjectPair.position = new Vector2(x, y);
-						newObjectPair.collisionID = this.GetNewCollisionId();
-						this.level.levelObjects.Add(newObjectPair);
-						clickedTile.hasOther = true;
-					}
-					break;
-				default:
-					break;
+				switch (this.activeTileType) {
+					case LevelObjectType.Spawn:
+						if (!clickedTile.hasWall && !clickedTile.hasOther) {
+							this.level.spawn = new Vector2(x, y);
+							clickedTile.hasOther = true;
+						}
+						break;
+					case LevelObjectType.wall:
+						if (!clickedTile.hasOther) {
+							this.level.ToggleWall(new Vector2(x, y));
+							clickedTile.hasWall = true;
+						}
+						break;
+					case LevelObjectType.LevelEnd:
+					case LevelObjectType.DeathTile:
+					case LevelObjectType.InverseSpawn:
+					case LevelObjectType.FakeWall:
+						if (!clickedTile.hasWall) {
+							LevelObject newObject = new LevelObject();
+							newObject.levelObjectType = this.activeTileType;
+							newObject.position = new Vector2(x, y);
+							this.level.levelObjects.Add(newObject);
+							clickedTile.hasOther = true;
+						}
+						break;
+					case LevelObjectType.Object:
+						if (!clickedTile.hasWall) {
+							LevelObject newObjectPair = new LevelObject();
+							newObjectPair.levelObjectType = this.activeTileType;
+							newObjectPair.objectPair = this.activeObjectPair;
+							newObjectPair.position = new Vector2(x, y);
+							newObjectPair.collisionID = this.GetNewCollisionId();
+							this.level.levelObjects.Add(newObjectPair);
+							clickedTile.hasOther = true;
+						}
+						break;
+					default:
+						break;
+				}
+				UpdateLevel();
 			}
-			UpdateLevel();
 		} else if (this.hasActiveTile && Input.GetMouseButtonDown(1)) {
 			this.ClearActiveTileType();
 		}
@@ -122,7 +124,7 @@ public class LevelEditor : LevelBuilder {
 		this.level.height = int.Parse(this.heightInput.text);
 		this.level.levelText = this.levelTextInput.text;
 		this.level.name = this.levelNameInput.text;
-		this.grid = new Grid(this.level.width, this.level.height, true);
+		this.grid = new Grid(this.level.width, this.level.height, new Vector3(.5f, .5f), true);
 		BuildLevel(this.level, true);
 	}
 

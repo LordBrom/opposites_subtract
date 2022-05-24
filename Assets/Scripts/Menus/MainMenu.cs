@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void LevelEditor() {
-		levelSelectMenu.ShowLevelSelectMenu();
+		levelSelectMenu.ShowLevelSelectMenu(true);
 	}
 
 	public void QuitGame() {

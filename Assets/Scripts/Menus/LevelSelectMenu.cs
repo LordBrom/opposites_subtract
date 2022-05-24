@@ -13,25 +13,34 @@ public class LevelSelectMenu : HideableMenu {
 	#endregion
 	#region Variables
 
+	private List<GameObject> loadedLevels;
+
 	#endregion
 
 	#region Unity Methods
 	protected override void Start() {
 		base.Start();
+
+		loadedLevels = new List<GameObject>();
 	}
 	#endregion
 
-	public void ShowLevelSelectMenu(bool customOnly = false) {
-		if (customOnly) {
-
+	public void ShowLevelSelectMenu(bool customLevels = false) {
+		foreach (GameObject levelObject in loadedLevels) {
+			Destroy(levelObject);
 		}
-		//List<Level> customLevels = LevelSaveLoad.LoadLevelFolder();
-
-		foreach (Level level in LevelManager.levels) {
-			Instantiate(levelListItemPrefab, levelListing).GetComponent<LevelListItem>().SetLevelData(level);
-		}
-
+		loadedLevels.Clear();
+		this.LoadLevelListingItems(customLevels ? LevelManager.customLevels : LevelManager.levels);
 		this.ShowMenu();
+	}
+
+	private void LoadLevelListingItems(Level[] levels) {
+		foreach (Level level in levels) {
+			Debug.Log(level.name);
+			GameObject levelListItemObject = Instantiate(levelListItemPrefab, levelListing);
+			levelListItemObject.GetComponent<LevelListItem>().SetLevelData(level);
+			loadedLevels.Add(levelListItemObject);
+		}
 	}
 
 	public void HideLevelSelectMenu() {

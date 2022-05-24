@@ -17,10 +17,11 @@ public class Level {
 	public List<LevelObject> levelObjects;
 	public List<Vector2> walls;
 
-	public Level() {
+	public Level(bool isCustom = false) {
 		levelObjects = new List<LevelObject>();
 		walls = new List<Vector2>();
 		spawn = new Vector2(0, 0);
+		this.isCustom = isCustom;
 	}
 
 	public Level(string levelJson) {

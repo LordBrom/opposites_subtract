@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,7 +42,7 @@ public class LevelEditor : LevelBuilder {
 
 	#region Unity Methods
 	private void Start() {
-		this.level = new Level();
+		this.level = new Level(true);
 
 		this.widthInput.onValueChanged.AddListener(delegate { UpdateLevel(); });
 		this.heightInput.onValueChanged.AddListener(delegate { UpdateLevel(); });
@@ -120,9 +120,7 @@ public class LevelEditor : LevelBuilder {
 	}
 
 	public void SaveLevelButton() {
-		string levelName = Regex.Replace(this.level.name, "[^0-9a-zA-Z_ ]", "");
-		levelName = levelName.Replace(" ", "_");
-		LevelSaveLoad.SaveLevelJson(this.level, levelName);
+		LevelSaveLoad.SaveLevelJson(this.level);
 	}
 
 	public void SetActiveTileType(LevelObject.Type levelObjectType, ObjectPair objectPair) {

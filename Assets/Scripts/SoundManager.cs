@@ -2,6 +2,18 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
 
+	#region Singleton
+	public static SoundManager instance;
+
+	private void Awake() {
+		if (instance != null) {
+			Destroy(gameObject);
+			return;
+		}
+		instance = this;
+	}
+	#endregion
+
 	public AudioSource backgroundMusic;
 	public AudioSource levelWin;
 	public AudioSource levelLoose;

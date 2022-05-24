@@ -11,8 +11,9 @@ public class Level {
 	public string levelText;
 	public string nextLevel;
 
+	public bool isCustom { get; private set; }
+
 	public Vector2 spawn;
-	//public LevelObject[] levelObjects;
 	public List<LevelObject> levelObjects;
 	public List<Vector2> walls;
 

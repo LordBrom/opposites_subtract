@@ -54,17 +54,17 @@ public class LevelBuilder : MonoBehaviour {
 
 	protected virtual void CreateBoarder(int height, int width) {
 		GameObject newFloor = Instantiate(floorPrefab, transform);
-		newFloor.transform.position = new Vector3(((float)width + 1) / 2, ((float)height + 1) / 2, 5);
+		newFloor.transform.position = new Vector3((((float)width + 1) / 2) - 1, (((float)height + 1) / 2) - 1, 5);
 		newFloor.transform.localScale = new Vector3((float)width + 2, (float)height + 2, 1);
 		renderedLevelObjects.Add(newFloor);
 
 		for (int x = 0; x <= width + 1; x++) {
-			renderedLevelObjects.Add(Instantiate(wallPrefab, new Vector3(x, 0, 3), Quaternion.identity, transform));
-			renderedLevelObjects.Add(Instantiate(wallPrefab, new Vector3(x, height + 1, 3), Quaternion.identity, transform));
+			renderedLevelObjects.Add(Instantiate(wallPrefab, new Vector3(x - 1, -1, 3), Quaternion.identity, transform));
+			renderedLevelObjects.Add(Instantiate(wallPrefab, new Vector3(x - 1, height, 3), Quaternion.identity, transform));
 		}
 		for (int y = 1; y <= height; y++) {
-			renderedLevelObjects.Add(Instantiate(wallPrefab, new Vector3(0, y, 3), Quaternion.identity, transform));
-			renderedLevelObjects.Add(Instantiate(wallPrefab, new Vector3(width + 1, y, 3), Quaternion.identity, transform));
+			renderedLevelObjects.Add(Instantiate(wallPrefab, new Vector3(-1, y - 1, 3), Quaternion.identity, transform));
+			renderedLevelObjects.Add(Instantiate(wallPrefab, new Vector3(width, y - 1, 3), Quaternion.identity, transform));
 		}
 	}
 
@@ -117,7 +117,7 @@ public class LevelBuilder : MonoBehaviour {
 	}
 
 	protected virtual void SetCameraPosition(int height, int width) {
-		cam.transform.position = new Vector3(((float)width + 1) / 2, ((float)height + 1) / 2, -10);
+		cam.transform.position = new Vector3((((float)width + 1) / 2) - 1, (((float)height + 1) / 2) - 1, -10);
 
 
 		float unitsPerPixel;

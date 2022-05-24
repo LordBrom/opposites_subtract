@@ -25,7 +25,7 @@ public class LevelListItem : MonoBehaviour {
 	}
 
 	public void SelectLevel() {
-		LevelManager.activeLevel = this.level;
+		LevelManager.SetLevel(this.level);
 		SceneManager.LoadScene(1);
 	}
 }

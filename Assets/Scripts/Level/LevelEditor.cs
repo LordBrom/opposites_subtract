@@ -20,6 +20,8 @@ public class LevelEditor : LevelBuilder {
 
 	#region Inspector Assignments
 
+	public PauseMenu pauseMenu;
+
 	public InputField widthInput;
 	public InputField heightInput;
 	public InputField levelTextInput;
@@ -55,17 +57,14 @@ public class LevelEditor : LevelBuilder {
 
 	}
 	void Update() {
-		if (Input.GetKeyDown(KeyCode.R)) {
-			BuildLevel(this.level);
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			pauseMenu.ToggleMenu();
 		}
 
 		if (this.hasActiveTile && Input.GetMouseButtonDown(0) && this.grid.OnGrid()) {
 			this.grid.GetXY(out int x, out int y);
 			GridTile clickedTile = this.grid.GetGridTile(x, y);
 
-			// Adding 1 because the "boarder" is 0
-			x += 1;
-			y += 1;
 			if (clickedTile != null) {
 
 
@@ -124,7 +123,7 @@ public class LevelEditor : LevelBuilder {
 		this.level.height = int.Parse(this.heightInput.text);
 		this.level.levelText = this.levelTextInput.text;
 		this.level.name = this.levelNameInput.text;
-		this.grid = new Grid(this.level.width, this.level.height, new Vector3(.5f, .5f), true);
+		this.grid = new Grid(this.level.width, this.level.height, new Vector3(-0.5f, -0.5f), true);
 		BuildLevel(this.level, true);
 	}
 

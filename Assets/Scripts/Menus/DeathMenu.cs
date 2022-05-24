@@ -3,7 +3,7 @@ using UnityEngine;
 public class DeathMenu : HideableMenu {
 
 	public void MainMenu() {
-		GameManager.instance.GoToMainMenu();
+		GoToMainMenu();
 	}
 
 	public void ReloadLevel() {

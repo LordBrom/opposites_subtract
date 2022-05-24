@@ -30,7 +30,7 @@ public class Reactor : Collidable {
 			PlayPushSound();
 		}
 		lastPosition = transform.position;
-		pushSound.volume = GameManager.instance.soundManager.GetEffectVolume();
+		pushSound.volume = SoundManager.instance.GetEffectVolume();
 		base.Update();
 	}
 

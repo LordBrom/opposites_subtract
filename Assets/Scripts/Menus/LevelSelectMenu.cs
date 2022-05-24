@@ -26,13 +26,12 @@ public class LevelSelectMenu : HideableMenu {
 	#endregion
 
 	public void ShowLevelSelectMenu(bool customOnly = false) {
-		List<Level> gameLevels = LevelSaveLoad.LoadLevelFolder();
 		if (customOnly) {
 
 		}
 		//List<Level> customLevels = LevelSaveLoad.LoadLevelFolder();
 
-		foreach (Level level in gameLevels) {
+		foreach (Level level in LevelManager.levels) {
 			Instantiate(levelListItemPrefab, levelListing).GetComponent<LevelListItem>().SetLevelData(level);
 		}
 

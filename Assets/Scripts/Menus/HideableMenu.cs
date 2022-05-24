@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HideableMenu : MonoBehaviour {
 
@@ -38,5 +39,9 @@ public class HideableMenu : MonoBehaviour {
 		} else {
 			ShowMenu();
 		}
+	}
+
+	public void GoToMainMenu() {
+		SceneManager.LoadScene(0);
 	}
 }

@@ -32,25 +32,25 @@ public class OptionMenu : HideableMenu {
 	}
 
 	private void SetMasterVolume() {
-		GameManager.instance.soundManager.masterVolume = masterVolumeSlider.value;
+		SoundManager.instance.masterVolume = masterVolumeSlider.value;
 		SaveVolume();
 	}
 
 	private void SetMusicVolume() {
-		GameManager.instance.soundManager.musicVolume = musicVolumeSlider.value;
+		SoundManager.instance.musicVolume = musicVolumeSlider.value;
 		SaveVolume();
 	}
 
 	private void SetEffectVolume() {
-		GameManager.instance.soundManager.effectVolume = effectVolumeSlider.value;
+		SoundManager.instance.effectVolume = effectVolumeSlider.value;
 		SaveVolume();
 	}
 
 	private void SaveVolume() {
 		string data = "";
-		data += GameManager.instance.soundManager.masterVolume.ToString() + "|";
-		data += GameManager.instance.soundManager.musicVolume.ToString() + "|";
-		data += GameManager.instance.soundManager.effectVolume.ToString();
+		data += SoundManager.instance.masterVolume.ToString() + "|";
+		data += SoundManager.instance.musicVolume.ToString() + "|";
+		data += SoundManager.instance.effectVolume.ToString();
 
 		PlayerPrefs.SetString(saveStr, data);
 	}

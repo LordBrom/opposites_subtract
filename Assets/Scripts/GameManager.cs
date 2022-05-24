@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour {
 
 	#region Inspector Assignments
 
-	public SoundManager soundManager;
 	public LevelBuilder levelBuilder;
 
 	public LevelOverMenu levelOverMenu;
@@ -47,14 +46,14 @@ public class GameManager : MonoBehaviour {
 
 	public void StartGame(Scene S, LoadSceneMode mode) {
 		SceneManager.sceneLoaded -= StartGame;
-		level = LevelManager.activeLevel;
+		level = LevelManager.level;
 		LoadLevel();
 	}
 
 	public void EndLevel() {
 		if (levelActive) {
 			levelActive = false;
-			soundManager.PlayLevelWin();
+			SoundManager.instance.PlayLevelWin();
 			levelOverMenu.ShowMenu();
 		}
 	}
@@ -62,7 +61,7 @@ public class GameManager : MonoBehaviour {
 	public void ShowDeathMenu() {
 		if (levelActive) {
 			levelActive = false;
-			soundManager.PlayLevelLoose();
+			SoundManager.instance.PlayLevelLoose();
 			deathMenu.ShowMenu();
 		}
 	}
@@ -81,10 +80,6 @@ public class GameManager : MonoBehaviour {
 		} else {
 			LoadLevel();
 		}
-	}
-
-	public void GoToMainMenu() {
-		SceneManager.LoadScene(0);
 	}
 
 	public void ShowThanksMenu() {

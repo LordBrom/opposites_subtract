@@ -19,7 +19,9 @@ public class TileOption : MonoBehaviour {
 	#region Unity Methods
 	private void Start() {
 		this.image = GetComponent<Image>();
-		image.sprite = this.objectPair.sprite;
+		if (this.objectPair != null) {
+			image.sprite = this.objectPair.sprite;
+		}
 	}
 
 	private void Update() {

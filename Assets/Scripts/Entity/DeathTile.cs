@@ -5,7 +5,7 @@ public class DeathTile : Collidable {
 
 	protected override void OnCollide(Collider2D coll) {
 		if (coll.CompareTag("Player") || coll.CompareTag("InvPlayer")) {
-			GameManager.instance.ShowDeathMenu();
+			LevelPlayer.instance.ShowDeathMenu();
 		}
 	}
 	#endregion

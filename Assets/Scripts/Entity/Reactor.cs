@@ -45,9 +45,9 @@ public class Reactor : Collidable {
 		if (otherReactor != null) {
 			if (this.collisionID == otherReactor.collisionID) {
 				if (this.hasLevelEnd) {
-					GameManager.instance.levelBuilder.AddLevelEnd(transform.position);
+					LevelPlayer.instance.AddLevelEnd(transform.position);
 				} else if (otherReactor.hasLevelEnd) {
-					GameManager.instance.levelBuilder.AddLevelEnd(otherReactor.transform.position);
+					LevelPlayer.instance.AddLevelEnd(otherReactor.transform.position);
 				}
 				Destroy(gameObject);
 				Destroy(coll.gameObject);

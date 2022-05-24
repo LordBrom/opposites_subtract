@@ -54,7 +54,6 @@ public class LevelEditor : LevelBuilder {
 		this.levelTextInput.text = this.level.levelText;
 
 		BuildLevel(this.level, true);
-
 	}
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.Escape)) {

@@ -10,6 +10,12 @@ public class PauseMenu : HideableMenu {
 		mainPauseMenu.ShowMenu();
 	}
 
+	public void Update() {
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			this.ToggleMenu();
+		}
+	}
+
 	public void ResumeGame() {
 		HideMenu();
 	}

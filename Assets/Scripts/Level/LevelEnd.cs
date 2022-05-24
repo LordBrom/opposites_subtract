@@ -5,7 +5,7 @@ public class LevelEnd : Collidable {
 
 	protected override void OnCollide(Collider2D coll) {
 		if (coll.CompareTag("Player")) {
-			GameManager.instance.EndLevel();
+			LevelPlayer.instance.EndLevel();
 		}
 	}
 	#endregion

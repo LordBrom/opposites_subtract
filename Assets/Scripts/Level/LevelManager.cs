@@ -7,7 +7,7 @@ public static class LevelManager {
 	public static Level[] customLevels;
 	public static Level level { get; private set; }
 	private static bool isCustom;
-	private static int currentLevel = -1;
+	private static int currentLevel = 0;
 	private static bool levelsLoaded;
 
 	#endregion
@@ -21,9 +21,10 @@ public static class LevelManager {
 	}
 
 	public static void SetLevel(Level level) {
-		if (level.isCustom) {
+		//if (level.isCustom) {
 
-		}
+		//}
+		LevelManager.level = level;
 	}
 
 	public static bool SetNextLevel() {

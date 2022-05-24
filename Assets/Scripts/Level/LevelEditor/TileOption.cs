@@ -6,7 +6,7 @@ public class TileOption : MonoBehaviour {
 	#region Inspector Assignments
 
 	[SerializeField]
-	private LevelObjectType objectType;
+	private LevelObject.Type objectType;
 
 	#endregion
 	#region Variables

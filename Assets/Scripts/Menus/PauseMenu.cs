@@ -10,7 +10,7 @@ public class PauseMenu : HideableMenu {
 		mainPauseMenu.ShowMenu();
 	}
 
-	public void Update() {
+	protected override void Update() {
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			this.ToggleMenu();
 		}
@@ -38,7 +38,7 @@ public class PauseMenu : HideableMenu {
 	}
 
 	public override void ToggleMenu() {
-		ShowMainPause();
 		base.ToggleMenu();
+		ShowMainPause();
 	}
 }

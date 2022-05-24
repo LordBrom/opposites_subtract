@@ -16,28 +16,30 @@ public class HideableMenu : MonoBehaviour {
 	}
 
 	protected virtual void Start() {
-		HideMenu();
+		this.HideMenu();
+	}
+	protected virtual void Update() {
 	}
 	#endregion
 
 	public void ShowMenu() {
-		showing = true;
-		canvasGroup.alpha = 1;
-		canvasGroup.interactable = true;
-		canvasGroup.blocksRaycasts = true;
+		this.showing = true;
+		this.canvasGroup.alpha = 1;
+		this.canvasGroup.interactable = true;
+		this.canvasGroup.blocksRaycasts = true;
 	}
 	public void HideMenu() {
-		showing = false;
-		canvasGroup.alpha = 0;
-		canvasGroup.interactable = false;
-		canvasGroup.blocksRaycasts = false;
+		this.showing = false;
+		this.canvasGroup.alpha = 0;
+		this.canvasGroup.interactable = false;
+		this.canvasGroup.blocksRaycasts = false;
 	}
 
 	public virtual void ToggleMenu() {
-		if (showing) {
-			HideMenu();
+		if (this.showing) {
+			this.HideMenu();
 		} else {
-			ShowMenu();
+			this.ShowMenu();
 		}
 	}
 

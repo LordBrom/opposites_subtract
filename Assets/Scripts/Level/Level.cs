@@ -20,13 +20,13 @@ public class Level {
 	public Level() {
 		levelObjects = new List<LevelObject>();
 		walls = new List<Vector2>();
-		spawn = new Vector2(1, 1);
+		spawn = new Vector2(0, 0);
 	}
 
 	public Level(string levelJson) {
 		levelObjects = new List<LevelObject>();
 		walls = new List<Vector2>();
-		spawn = new Vector2(1, 1);
+		spawn = new Vector2(0, 0);
 		this.LoadFromJSON(levelJson);
 	}
 
@@ -40,7 +40,7 @@ public class Level {
 	private void OnValidate() {
 		int endCount = 0;
 		foreach (LevelObject levelObject in this.levelObjects) {
-			if (levelObject.levelObjectType == LevelObjectType.LevelEnd || levelObject.hasLevelEnd) {
+			if (levelObject.type == LevelObject.Type.LevelEnd || levelObject.hasLevelEnd) {
 				endCount++;
 			}
 		}
@@ -69,24 +69,4 @@ public class Level {
 			walls.Remove(wallPosition);
 		}
 	}
-}
-
-[System.Serializable]
-public struct LevelObject {
-	public LevelObjectType levelObjectType;
-	public string collisionID;
-	public ObjectPair objectPair;
-	public bool hasLevelEnd;
-	public Vector2 position;
-}
-
-// spawn and wall now only used in level editor
-public enum LevelObjectType {
-	Spawn,
-	LevelEnd,
-	Object,
-	DeathTile,
-	InverseSpawn,
-	FakeWall,
-	wall
 }

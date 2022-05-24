@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class LevelOverMenu : HideableMenu {
 
-	private void Update() {
+	protected override void Update() {
 		if (showing && Input.GetKeyDown(KeyCode.E)) {
 			NextLevel();
 		}

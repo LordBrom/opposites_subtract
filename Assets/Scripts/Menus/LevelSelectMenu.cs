@@ -19,10 +19,6 @@ public class LevelSelectMenu : HideableMenu {
 	protected override void Start() {
 		base.Start();
 	}
-
-	void Update() {
-
-	}
 	#endregion
 
 	public void ShowLevelSelectMenu(bool customOnly = false) {

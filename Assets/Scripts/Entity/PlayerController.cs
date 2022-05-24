@@ -7,15 +7,19 @@ public class PlayerController : Mover {
 	#endregion
 	#region Variables
 
+	public bool canMove = true;
+
 	#endregion
 	#region Unity Methods
 
 	protected virtual void FixedUpdate() {
-		float x = Input.GetAxisRaw("Horizontal");
-		float y = Input.GetAxisRaw("Vertical");
+		if (this.canMove) {
+			float x = Input.GetAxisRaw("Horizontal");
+			float y = Input.GetAxisRaw("Vertical");
 
-		if (LevelPlayer.instance.levelActive) {
-			UpdateMotor(new Vector2(x, y));
+			if (LevelPlayer.instance.levelActive) {
+				UpdateMotor(new Vector2(x, y));
+			}
 		}
 	}
 

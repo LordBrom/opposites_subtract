@@ -42,7 +42,7 @@ public class LevelEditor : LevelBuilder {
 
 	#region Unity Methods
 	private void Start() {
-		this.level = new Level(true);
+		this.level = LevelManager.level;
 
 		this.widthInput.onValueChanged.AddListener(delegate { UpdateLevel(); });
 		this.heightInput.onValueChanged.AddListener(delegate { UpdateLevel(); });

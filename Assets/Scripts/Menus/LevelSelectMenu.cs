@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelSelectMenu : HideableMenu {
 
@@ -36,7 +37,6 @@ public class LevelSelectMenu : HideableMenu {
 
 	private void LoadLevelListingItems(Level[] levels) {
 		foreach (Level level in levels) {
-			Debug.Log(level.name);
 			GameObject levelListItemObject = Instantiate(levelListItemPrefab, levelListing);
 			levelListItemObject.GetComponent<LevelListItem>().SetLevelData(level);
 			loadedLevels.Add(levelListItemObject);
@@ -45,5 +45,10 @@ public class LevelSelectMenu : HideableMenu {
 
 	public void HideLevelSelectMenu() {
 		this.HideMenu();
+	}
+
+	public void NewLevelButton() {
+		LevelManager.SetLevel(new Level(true));
+		SceneManager.LoadScene(2);
 	}
 }

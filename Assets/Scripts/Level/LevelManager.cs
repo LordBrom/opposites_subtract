@@ -9,6 +9,7 @@ public static class LevelManager {
 	private static bool isCustom;
 	private static int currentLevel = 0;
 	private static bool levelsLoaded;
+	public static bool loadCustom;
 
 	#endregion
 

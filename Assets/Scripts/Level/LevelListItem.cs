@@ -26,6 +26,10 @@ public class LevelListItem : MonoBehaviour {
 
 	public void SelectLevel() {
 		LevelManager.SetLevel(this.level);
-		SceneManager.LoadScene(1);
+		if (LevelManager.loadCustom) {
+			SceneManager.LoadScene(2);
+		} else {
+			SceneManager.LoadScene(1);
+		}
 	}
 }

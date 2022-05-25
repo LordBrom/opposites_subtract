@@ -32,7 +32,7 @@ public static class LevelSaveLoad {
 
 	public static void SaveLevelJson(Level level) {
 		CheckFolders();
-		string filePath = LevelSaveLoad.GetFilePath(level, false);
+		string filePath = LevelSaveLoad.GetFilePath(level);
 		string levelJson = JsonUtility.ToJson(level);
 		File.WriteAllText(filePath, levelJson);
 	}

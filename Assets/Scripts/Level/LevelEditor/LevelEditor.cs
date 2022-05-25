@@ -158,7 +158,10 @@ public class LevelEditor : LevelBuilder {
 		BuildLevel(this.level, true);
 	}
 
-	public void SaveLevelButton() {
+	public void SaveLevelButton(bool asMain = false) {
+		if (asMain) {
+			this.level.isCustom = false;
+		}
 		LevelSaveLoad.SaveLevelJson(this.level);
 	}
 

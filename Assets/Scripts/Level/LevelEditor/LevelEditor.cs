@@ -47,16 +47,17 @@ public class LevelEditor : LevelBuilder {
 			this.level = new Level(true);
 		}
 
+		this.widthInput.text = this.level.width.ToString();
+		this.heightInput.text = this.level.height.ToString();
+		this.levelTextInput.text = this.level.levelText;
+		this.levelNameInput.text = this.level.name;
+
 		this.widthInput.onValueChanged.AddListener(delegate { UpdateLevel(); });
 		this.heightInput.onValueChanged.AddListener(delegate { UpdateLevel(); });
 		this.levelTextInput.onValueChanged.AddListener(delegate { UpdateLevel(); });
 		this.levelNameInput.onValueChanged.AddListener(delegate { UpdateLevel(); });
 
-		this.widthInput.text = this.level.width.ToString();
-		this.heightInput.text = this.level.height.ToString();
-		this.levelTextInput.text = this.level.levelText;
-
-		this.grid = new Grid(this.level.width, this.level.height, new Vector3(-0.5f, -0.5f));
+		SetupNewGrid();
 		BuildLevel(this.level, true);
 	}
 	void Update() {
@@ -65,6 +66,7 @@ public class LevelEditor : LevelBuilder {
 			GridTile clickedTile = this.grid.GetGridTile(x, y);
 
 			if (clickedTile != null) {
+				LevelObject newObject;
 				switch (this.activeTileType) {
 
 					case LevelObject.Type.Spawn:
@@ -81,10 +83,26 @@ public class LevelEditor : LevelBuilder {
 						}
 						break;
 
+					case LevelObject.Type.FakeWall:
+						if (clickedTile.hasWall) {
+							break;
+						}
+						if (clickedTile.hasFakeWall) {
+							this.level.levelObjects.Remove(clickedTile.placedObject);
+							if (clickedTile.placedObject.type == this.activeTileType) {
+								clickedTile.placedObject = null;
+								clickedTile.hasFakeWall = false;
+								break;
+							}
+						}
+						newObject = new LevelObject(this.activeTileType, new Vector2(x, y));
+						this.level.levelObjects.Add(newObject);
+						clickedTile.hasFakeWall = true;
+						break;
+
 					case LevelObject.Type.LevelEnd:
 					case LevelObject.Type.DeathTile:
 					case LevelObject.Type.InverseSpawn:
-					case LevelObject.Type.FakeWall:
 						if (clickedTile.hasWall) {
 							break;
 						}
@@ -92,14 +110,14 @@ public class LevelEditor : LevelBuilder {
 							this.level.levelObjects.Remove(clickedTile.placedObject);
 							if (clickedTile.placedObject.type == this.activeTileType) {
 								clickedTile.placedObject = null;
+								clickedTile.hasOther = false;
 								break;
 							}
 						}
-						LevelObject newObject = new LevelObject(this.activeTileType, new Vector2(x, y));
+						newObject = new LevelObject(this.activeTileType, new Vector2(x, y));
 						this.level.levelObjects.Add(newObject);
 						clickedTile.hasOther = true;
 						break;
-
 					case LevelObject.Type.Object:
 						if (clickedTile.hasWall) {
 							break;
@@ -111,10 +129,10 @@ public class LevelEditor : LevelBuilder {
 								break;
 							}
 						}
-						LevelObject newObjectPair = new LevelObject(this.activeTileType, new Vector2(x, y), this.activeObjectPair, this.GetNewCollisionId());
-						this.level.levelObjects.Add(newObjectPair);
+						newObject = new LevelObject(this.activeTileType, new Vector2(x, y), this.activeObjectPair, this.GetNewCollisionId());
+						this.level.levelObjects.Add(newObject);
 						clickedTile.hasOther = true;
-						clickedTile.placedObject = newObjectPair;
+						clickedTile.placedObject = newObject;
 						break;
 
 					default:
@@ -136,6 +154,7 @@ public class LevelEditor : LevelBuilder {
 		this.level.height = int.Parse(this.heightInput.text);
 		this.level.levelText = this.levelTextInput.text;
 		this.level.name = this.levelNameInput.text;
+		SetupNewGrid();
 		BuildLevel(this.level, true);
 	}
 
@@ -155,5 +174,50 @@ public class LevelEditor : LevelBuilder {
 
 	public string GetNewCollisionId() {
 		return "super random string";
+	}
+
+	public void RemoveOutOfBounds() {
+		List<Vector2> wallsToRemove = new List<Vector2>();
+		foreach (Vector2 wall in this.level.walls) {
+			if (!this.grid.OnGrid(wall.x, wall.y)) {
+				wallsToRemove.Add(wall);
+			}
+		}
+		foreach (Vector2 wall in wallsToRemove) {
+			this.level.walls.Remove(wall);
+		}
+		List<LevelObject> objectsToRemove = new List<LevelObject>();
+		foreach (LevelObject levelObject in this.level.levelObjects) {
+			if (!this.grid.OnGrid(levelObject.position)) {
+				objectsToRemove.Add(levelObject);
+			}
+		}
+		foreach (LevelObject objs in objectsToRemove) {
+			this.level.levelObjects.Remove(objs);
+		}
+	}
+
+	public void SetupNewGrid() {
+		this.grid = new Grid(this.level.width, this.level.height, new Vector3(-0.5f, -0.5f));
+		RemoveOutOfBounds();
+		GridTile gridTile;
+		foreach (Vector2 wall in this.level.walls) {
+			gridTile = this.grid.GetGridTile(wall.x, wall.y);
+			if (gridTile != null) {
+				gridTile.hasWall = true;
+			}
+		}
+		foreach (LevelObject levelObject in this.level.levelObjects) {
+			gridTile = this.grid.GetGridTile(levelObject.position.x, levelObject.position.y);
+
+			if (gridTile != null) {
+				gridTile.placedObject = levelObject;
+				if (levelObject.type == LevelObject.Type.FakeWall) {
+					gridTile.hasFakeWall = true;
+				} else {
+					gridTile.hasOther = true;
+				}
+			}
+		}
 	}
 }

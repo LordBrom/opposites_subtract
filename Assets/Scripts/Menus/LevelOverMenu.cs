@@ -8,14 +8,6 @@ public class LevelOverMenu : HideableMenu {
 		}
 	}
 
-	public void MainMenu() {
-		GoToMainMenu();
-	}
-
-	public void ReloadLevel() {
-		LevelPlayer.instance.LoadLevel();
-	}
-
 	public void NextLevel() {
 		LevelPlayer.instance.NextLevel();
 	}

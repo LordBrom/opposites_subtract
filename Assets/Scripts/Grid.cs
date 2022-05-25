@@ -41,6 +41,9 @@ public class Grid {
 	public bool OnGrid(int x, int y) {
 		return x >= 0 && y >= 0 && x < this.width && y < this.height;
 	}
+	public bool OnGrid(float x, float y) {
+		return OnGrid((int)x, (int)y);
+	}
 	public bool OnGrid(Vector3 worldPosition) {
 		GetXY(worldPosition, out int x, out int y);
 		return OnGrid(x, y);
@@ -52,6 +55,9 @@ public class Grid {
 	public GridTile GetGridTile(Vector3 worldPosition) {
 		GetXY(worldPosition, out int x, out int y);
 		return GetGridTile(x, y);
+	}
+	public GridTile GetGridTile(float x, float y) {
+		return GetGridTile((int)x, (int)y);
 	}
 	public GridTile GetGridTile(int x, int y) {
 		if (OnGrid(x, y)) {
@@ -99,6 +105,7 @@ public class GridTile {
 	public int y;
 
 	public bool hasWall;
+	public bool hasFakeWall;
 	public bool hasOther;
 
 	public LevelObject placedObject;

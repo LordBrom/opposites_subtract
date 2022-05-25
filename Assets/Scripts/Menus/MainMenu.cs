@@ -2,10 +2,6 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour {
 
-	private void Start() {
-		LevelManager.LoadLevels();
-	}
-
 	[SerializeField]
 	private LevelSelectMenu levelSelectMenu;
 
@@ -22,5 +18,4 @@ public class MainMenu : MonoBehaviour {
 	public void QuitGame() {
 		Application.Quit();
 	}
-
 }

@@ -1,4 +1,3 @@
 using UnityEngine;
 
-public class ThanksMenu : HideableMenu {
-}
+public class ThanksMenu : HideableMenu { }

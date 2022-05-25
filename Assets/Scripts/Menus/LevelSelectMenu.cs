@@ -27,6 +27,7 @@ public class LevelSelectMenu : HideableMenu {
 	#endregion
 
 	public void ShowLevelSelectMenu(bool customLevels = false) {
+		LevelManager.LoadLevels(reload: true);
 		foreach (GameObject levelObject in loadedLevels) {
 			Destroy(levelObject);
 		}

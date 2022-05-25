@@ -43,7 +43,19 @@ public class HideableMenu : MonoBehaviour {
 		}
 	}
 
+
+	public void MainMenu() {
+		GoToMainMenu();
+	}
 	public void GoToMainMenu() {
 		SceneManager.LoadScene(0);
+	}
+
+	public void QuitGame() {
+		Application.Quit();
+	}
+
+	public void ReloadLevel() {
+		LevelPlayer.instance.LoadLevel();
 	}
 }

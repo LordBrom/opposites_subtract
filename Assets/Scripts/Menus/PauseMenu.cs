@@ -20,14 +20,6 @@ public class PauseMenu : HideableMenu {
 		HideMenu();
 	}
 
-	public void MainMenu() {
-		GoToMainMenu();
-	}
-
-	public void QuitGame() {
-		Application.Quit();
-	}
-
 	public void ShowOptions() {
 		mainPauseMenu.HideMenu();
 		optionsMenu.ShowMenu();

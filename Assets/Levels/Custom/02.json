@@ -1,0 +1,58 @@
+{
+	"name": "02",
+	"isCustom": false,
+	"width": 5,
+	"height": 3,
+	"levelText": "Simple as Black and White",
+	"nextLevel": "",
+	"spawn": {
+		"x": 0.0,
+		"y": 1.0
+	},
+	"levelObjects": [{
+		"type": 2,
+		"position": {
+			"x": 1.0,
+			"y": 1.0
+		},
+		"objectPair": {
+			"instanceID": 17426
+		},
+		"collisionID": "super random string",
+		"hasLevelEnd": false
+	}, {
+		"type": 1,
+		"position": {
+			"x": 4.0,
+			"y": 1.0
+		},
+		"objectPair": {
+			"instanceID": 0
+		},
+		"collisionID": "",
+		"hasLevelEnd": false
+	}, {
+		"type": 2,
+		"position": {
+			"x": 3.0,
+			"y": 1.0
+		},
+		"objectPair": {
+			"instanceID": 17430
+		},
+		"collisionID": "super random string",
+		"hasLevelEnd": false
+	}, {
+		"type": 2,
+		"position": {
+			"x": 5.0,
+			"y": 3.0
+		},
+		"objectPair": {
+			"instanceID": 17430
+		},
+		"collisionID": "super random string",
+		"hasLevelEnd": false
+	}],
+	"walls": []
+}

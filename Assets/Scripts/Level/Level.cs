@@ -11,7 +11,7 @@ public class Level {
 	public string levelText;
 	public string nextLevel;
 
-	public bool isCustom { get; private set; }
+	public bool isCustom;
 
 	public Vector2 spawn;
 	public List<LevelObject> levelObjects;

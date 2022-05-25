@@ -27,5 +27,14 @@ public class TileSelectMenu : HideableMenu {
 		}
 
 	}
+
+	protected override void Update() {
+		base.Update();
+		if (this.showing && LevelEditor.instance.hasActiveTile) {
+			this.HideMenu();
+		} else if (!this.showing && !LevelEditor.instance.hasActiveTile) {
+			this.ShowMenu();
+		}
+	}
 	#endregion
 }

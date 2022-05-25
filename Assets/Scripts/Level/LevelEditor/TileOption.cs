@@ -7,12 +7,16 @@ public class TileOption : MonoBehaviour {
 
 	[SerializeField]
 	private LevelObject.Type objectType;
+	[SerializeField]
+	private Image isActiveIndicator;
 
 	#endregion
 	#region Variables
 
 	public ObjectPair objectPair;
 	private Image image;
+
+
 
 	#endregion
 
@@ -25,7 +29,11 @@ public class TileOption : MonoBehaviour {
 	}
 
 	private void Update() {
-
+		if (LevelEditor.instance.hasActiveTile && LevelEditor.instance.activeTileType == this.objectType && LevelEditor.instance.activeObjectPair == this.objectPair) {
+			this.isActiveIndicator.color = new Color(255, 255, 255, 1);
+		} else {
+			this.isActiveIndicator.color = new Color(255, 255, 255, 0);
+		}
 	}
 	#endregion
 

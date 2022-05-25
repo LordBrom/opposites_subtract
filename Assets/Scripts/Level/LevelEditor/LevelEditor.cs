@@ -43,6 +43,9 @@ public class LevelEditor : LevelBuilder {
 	#region Unity Methods
 	private void Start() {
 		this.level = LevelManager.level;
+		if (this.level == null) {
+			this.level = new Level(true);
+		}
 
 		this.widthInput.onValueChanged.AddListener(delegate { UpdateLevel(); });
 		this.heightInput.onValueChanged.AddListener(delegate { UpdateLevel(); });
@@ -74,7 +77,7 @@ public class LevelEditor : LevelBuilder {
 					case LevelObject.Type.wall:
 						if (!clickedTile.hasOther) {
 							this.level.ToggleWall(new Vector2(x, y));
-							clickedTile.hasWall = true;
+							clickedTile.hasWall = this.level.walls.Contains(new Vector2(x, y));
 						}
 						break;
 
@@ -82,19 +85,36 @@ public class LevelEditor : LevelBuilder {
 					case LevelObject.Type.DeathTile:
 					case LevelObject.Type.InverseSpawn:
 					case LevelObject.Type.FakeWall:
-						if (!clickedTile.hasWall) {
-							LevelObject newObject = new LevelObject(this.activeTileType, new Vector2(x, y));
-							this.level.levelObjects.Add(newObject);
-							clickedTile.hasOther = true;
+						if (clickedTile.hasWall) {
+							break;
 						}
+						if (clickedTile.hasOther) {
+							this.level.levelObjects.Remove(clickedTile.placedObject);
+							if (clickedTile.placedObject.type == this.activeTileType) {
+								clickedTile.placedObject = null;
+								break;
+							}
+						}
+						LevelObject newObject = new LevelObject(this.activeTileType, new Vector2(x, y));
+						this.level.levelObjects.Add(newObject);
+						clickedTile.hasOther = true;
 						break;
 
 					case LevelObject.Type.Object:
-						if (!clickedTile.hasWall) {
-							LevelObject newObjectPair = new LevelObject(this.activeTileType, new Vector2(x, y), this.activeObjectPair, this.GetNewCollisionId());
-							this.level.levelObjects.Add(newObjectPair);
-							clickedTile.hasOther = true;
+						if (clickedTile.hasWall) {
+							break;
 						}
+						if (clickedTile.hasOther) {
+							this.level.levelObjects.Remove(clickedTile.placedObject);
+							if (clickedTile.placedObject.type == this.activeTileType && clickedTile.placedObject.objectPair == this.activeObjectPair) {
+								clickedTile.placedObject = null;
+								break;
+							}
+						}
+						LevelObject newObjectPair = new LevelObject(this.activeTileType, new Vector2(x, y), this.activeObjectPair, this.GetNewCollisionId());
+						this.level.levelObjects.Add(newObjectPair);
+						clickedTile.hasOther = true;
+						clickedTile.placedObject = newObjectPair;
 						break;
 
 					default:

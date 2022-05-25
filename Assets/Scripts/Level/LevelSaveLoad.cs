@@ -10,21 +10,41 @@ public static class LevelSaveLoad {
 	private static string rootLevelPath = Application.dataPath + "/Levels/";
 	private static string mainLevelPath = LevelSaveLoad.rootLevelPath + "Main/";
 	private static string customLevelPath = LevelSaveLoad.rootLevelPath + "Custom/";
+	private static bool foldersChecked = false;
 
 	#endregion
 
+	private static void CheckFolders() {
+		if (LevelSaveLoad.foldersChecked) {
+			return;
+		}
+		if (!Directory.Exists(LevelSaveLoad.rootLevelPath)) {
+			Directory.CreateDirectory(LevelSaveLoad.rootLevelPath);
+		}
+		if (!Directory.Exists(LevelSaveLoad.mainLevelPath)) {
+			Directory.CreateDirectory(LevelSaveLoad.mainLevelPath);
+		}
+		if (!Directory.Exists(LevelSaveLoad.customLevelPath)) {
+			Directory.CreateDirectory(LevelSaveLoad.customLevelPath);
+		}
+		LevelSaveLoad.foldersChecked = true;
+	}
+
 	public static void SaveLevelJson(Level level) {
+		CheckFolders();
 		string filePath = LevelSaveLoad.GetFilePath(level);
 		string levelJson = JsonUtility.ToJson(level);
 		File.WriteAllText(filePath, levelJson);
 	}
 
 	public static Level LoadLevelJson(string levelName, bool isCustom = true) {
+		CheckFolders();
 		string filePath = LevelSaveLoad.GetFilePath(levelName, isCustom, false);
 		return new Level(File.ReadAllText(filePath));
 	}
 
 	public static List<Level> LoadLevelFolder(bool customLevels = false) {
+		CheckFolders();
 		List<Level> levels = new List<Level>();
 
 		FileInfo[] files = new DirectoryInfo(customLevels ? LevelSaveLoad.customLevelPath : LevelSaveLoad.mainLevelPath).GetFiles();

@@ -15,6 +15,7 @@ public class TileOption : MonoBehaviour {
 
 	public ObjectPair objectPair;
 	private Image image;
+	private Tooltip tooltip;
 
 
 
@@ -23,6 +24,10 @@ public class TileOption : MonoBehaviour {
 	#region Unity Methods
 	private void Start() {
 		this.image = GetComponent<Image>();
+		this.tooltip = GetComponent<Tooltip>();
+		if (this.tooltip.tooltipText == "") {
+			this.tooltip.tooltipText = this.objectPair.name;
+		}
 		if (this.objectPair != null) {
 			image.sprite = this.objectPair.sprite;
 		}

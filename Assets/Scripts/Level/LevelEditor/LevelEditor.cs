@@ -66,11 +66,11 @@ public class LevelEditor : LevelBuilder {
 			GridTile clickedTile = this.grid.GetGridTile(x, y);
 
 			if (clickedTile != null) {
-				LevelObject newObject;
 				switch (this.activeTileType) {
 
 					case LevelObject.Type.Spawn:
 						if (!clickedTile.hasWall && !clickedTile.hasOther) {
+							this.grid.GetGridTile(this.level.spawn).hasOther = false;
 							this.level.spawn = new Vector2(x, y);
 							clickedTile.hasOther = true;
 						}
@@ -84,57 +84,17 @@ public class LevelEditor : LevelBuilder {
 						break;
 
 					case LevelObject.Type.FakeWall:
-						if (clickedTile.hasWall) {
-							break;
-						}
-						if (clickedTile.hasFakeWall) {
-							this.level.levelObjects.Remove(clickedTile.fakeWallObject);
-							clickedTile.fakeWallObject = null;
-							clickedTile.hasFakeWall = false;
-							break;
-						}
-						newObject = new LevelObject(this.activeTileType, new Vector2(x, y));
-						this.level.levelObjects.Add(newObject);
-						clickedTile.fakeWallObject = newObject;
-						clickedTile.hasFakeWall = true;
-						if (!Input.GetKeyDown(KeyCode.LeftShift)) {
-							this.ClearActiveTileType();
-						}
+						this.SetTileObject(clickedTile, isFakeWall: true);
 						break;
 
 					case LevelObject.Type.LevelEnd:
 					case LevelObject.Type.DeathTile:
 					case LevelObject.Type.InverseSpawn:
-						if (clickedTile.hasWall) {
-							break;
-						}
-						if (clickedTile.hasOther && clickedTile.placedObject.type == this.activeTileType) {
-							this.level.levelObjects.Remove(clickedTile.placedObject);
-							clickedTile.placedObject = null;
-							clickedTile.hasOther = false;
-							break;
-						}
-						newObject = new LevelObject(this.activeTileType, new Vector2(x, y));
-						this.level.levelObjects.Add(newObject);
-						clickedTile.placedObject = newObject;
-						clickedTile.hasOther = true;
+						this.SetTileObject(clickedTile);
 						break;
+
 					case LevelObject.Type.Object:
-						if (clickedTile.hasWall) {
-							break;
-						}
-						if (clickedTile.hasOther && clickedTile.placedObject.type == this.activeTileType && clickedTile.placedObject.name == this.activeObjectPair.name) {
-							this.level.levelObjects.Remove(clickedTile.placedObject);
-							clickedTile.placedObject = null;
-							break;
-						}
-						newObject = new LevelObject(this.activeTileType, new Vector2(x, y), this.activeObjectPair, this.GetNewCollisionId());
-						this.level.levelObjects.Add(newObject);
-						clickedTile.hasOther = true;
-						clickedTile.placedObject = newObject;
-						if (!Input.GetKeyDown(KeyCode.LeftShift)) {
-							this.ClearActiveTileType();
-						}
+						this.SetTileObject(clickedTile, isObjectPair: true);
 						break;
 
 					default:
@@ -147,6 +107,47 @@ public class LevelEditor : LevelBuilder {
 		}
 	}
 	#endregion
+
+	private void SetTileObject(GridTile clickedTile, bool isFakeWall = false, bool isObjectPair = false) {
+		if (clickedTile.hasWall) {
+			return;
+		}
+
+		if (isFakeWall && clickedTile.hasFakeWall) {
+			this.level.levelObjects.Remove(clickedTile.fakeWallObject);
+			clickedTile.fakeWallObject = null;
+			clickedTile.hasFakeWall = false;
+			return;
+		} else if (!isFakeWall && clickedTile.hasOther) {
+			this.level.levelObjects.Remove(clickedTile.placedObject);
+			if (clickedTile.placedObject.type == this.activeTileType) {
+				if (this.activeObjectPair == null || this.activeObjectPair.name == clickedTile.placedObject.name) {
+					clickedTile.placedObject = null;
+					clickedTile.hasOther = false;
+					return;
+				}
+			}
+		}
+
+		LevelObject newObject;
+		if (isObjectPair) {
+			newObject = new LevelObject(this.activeTileType, new Vector2(clickedTile.x, clickedTile.y), this.activeObjectPair, this.GetNewCollisionId());
+		} else {
+			newObject = new LevelObject(this.activeTileType, new Vector2(clickedTile.x, clickedTile.y));
+		}
+		this.level.levelObjects.Add(newObject);
+		if (isFakeWall) {
+			clickedTile.fakeWallObject = newObject;
+			clickedTile.hasFakeWall = true;
+		} else {
+			clickedTile.placedObject = newObject;
+			clickedTile.hasOther = true;
+		}
+
+		if (!Input.GetKey(KeyCode.LeftShift)) {
+			this.ClearActiveTileType();
+		}
+	}
 
 	public void UpdateLevel() {
 		if (this.widthInput.text == "" || this.heightInput.text == "") {

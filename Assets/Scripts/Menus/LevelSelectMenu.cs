@@ -58,7 +58,7 @@ public class LevelSelectMenu : HideableMenu {
 	}
 
 	private void LoadLevels(bool clearFirst = true) {
-		if (this.showingCustom) {
+		if (clearFirst) {
 			ClearLevelListing();
 		}
 		this.LoadLevelListingItems(this.showingCustom ? LevelManager.customLevels : LevelManager.levels);

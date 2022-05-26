@@ -4,10 +4,7 @@ public class Reactor : Collidable {
 
 	#region Inspector Assignments
 
-	[SerializeField]
-	private GameObject endLevelIndicator;
-
-	public string collisionID;
+	public int collisionGroupNum;
 	public Vector2 soundRange;
 
 	#endregion
@@ -43,7 +40,7 @@ public class Reactor : Collidable {
 		Reactor otherReactor = coll.gameObject.GetComponent<Reactor>();
 
 		if (otherReactor != null) {
-			if (this.collisionID == otherReactor.collisionID) {
+			if (this.collisionGroupNum == otherReactor.collisionGroupNum) {
 				if (this.hasLevelEnd) {
 					LevelPlayer.instance.AddLevelEnd(transform.position);
 				} else if (otherReactor.hasLevelEnd) {
@@ -57,18 +54,12 @@ public class Reactor : Collidable {
 	#endregion
 
 	public virtual void setBlockData(LevelObject levelObject, bool editMode = false) {
-		this.collisionID = levelObject.collisionID;
+		this.collisionGroupNum = levelObject.collisionGroupNum;
 		this.name = levelObject.name;
 		this.hasLevelEnd = levelObject.hasLevelEnd;
 		this.levelObject = levelObject;
 		this.editMode = editMode;
 		gameObject.GetComponent<SpriteRenderer>().sprite = levelObject.sprite;
-
-		if (editMode) {
-			endLevelIndicator.SetActive(true);
-		} else {
-			endLevelIndicator.SetActive(false);
-		}
 	}
 
 	public void ToggleHasLevelEnd() {
@@ -78,6 +69,15 @@ public class Reactor : Collidable {
 			this.hasLevelEnd = true;
 		}
 		this.levelObject.hasLevelEnd = this.hasLevelEnd;
+	}
+
+	public void SetCollisionGroupNum(int change, int groupCount = 10) {
+		this.collisionGroupNum += change;
+		this.collisionGroupNum %= groupCount;
+		if (this.collisionGroupNum < 0) {
+			this.collisionGroupNum = groupCount - 1;
+		}
+		this.levelObject.collisionGroupNum = this.collisionGroupNum;
 	}
 
 	void PlayPushSound() {

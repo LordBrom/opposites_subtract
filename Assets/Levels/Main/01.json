@@ -18,7 +18,7 @@
 		"objectPair": {
 			"instanceID": 0
 		},
-		"collisionID": "",
+		"collisionGroupNum": "",
 		"hasLevelEnd": false
 	}],
 	"walls": []

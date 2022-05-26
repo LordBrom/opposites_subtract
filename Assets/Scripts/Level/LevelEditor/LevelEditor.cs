@@ -131,7 +131,7 @@ public class LevelEditor : LevelBuilder {
 
 		LevelObject newObject;
 		if (isObjectPair) {
-			newObject = new LevelObject(this.activeTileType, new Vector2(clickedTile.x, clickedTile.y), this.activeObjectPair, this.GetNewCollisionId());
+			newObject = new LevelObject(this.activeTileType, new Vector2(clickedTile.x, clickedTile.y), this.activeObjectPair, 0);
 		} else {
 			newObject = new LevelObject(this.activeTileType, new Vector2(clickedTile.x, clickedTile.y));
 		}
@@ -182,10 +182,6 @@ public class LevelEditor : LevelBuilder {
 
 	public void ClearActiveTileType() {
 		this.hasActiveTile = false;
-	}
-
-	public string GetNewCollisionId() {
-		return "super random string";
 	}
 
 	public void RemoveOutOfBounds() {

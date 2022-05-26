@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 
 [System.Serializable]
@@ -7,11 +8,12 @@ public class LevelObject {
 
 	public Type type;
 	public Vector2 position;
-	//public ObjectPair objectPair;
-	public string collisionID;
+	public int collisionGroupNum;
 	public bool hasLevelEnd;
 
 	public string name;
+
+	[SerializeField]
 	public Sprite sprite;
 
 	[System.Serializable]
@@ -31,13 +33,14 @@ public class LevelObject {
 		this.type = type;
 		this.position = position;
 		this.name = type.ToString();
+		this.collisionGroupNum = 0;
 	}
-	public LevelObject(Type type, Vector2 position, ObjectPair objectPair, string collisionID) {
+	public LevelObject(Type type, Vector2 position, ObjectPair objectPair, int collisionGroupNum) {
 		this.type = type;
 		this.position = position;
-		//this.objectPair = objectPair;
-		this.collisionID = collisionID;
+		this.collisionGroupNum = collisionGroupNum;
 		this.name = objectPair.name;
 		this.sprite = objectPair.sprite;
 	}
+
 }

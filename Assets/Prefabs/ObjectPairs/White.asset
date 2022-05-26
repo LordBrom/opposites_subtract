@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8db9640f3f112d46a5eed2138c27253, type: 3}
+  m_Script: {fileID: 11500000, guid: aff7515a908d7c44380cc1da12841a73, type: 3}
   m_Name: White
   m_EditorClassIdentifier: 
   name: White
   sprite: {fileID: 21300000, guid: c226633a41032e740afa5a24e341b15a, type: 3}
-  reactsWith:
-  - {fileID: 11400000, guid: ebff6dabf76acc14997e19470a193473, type: 2}

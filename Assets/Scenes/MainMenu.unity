@@ -419,6 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b08910c289f9f34f9f223ad4ce1b5d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startShowing: 0
   levelListing: {fileID: 1974708712}
   levelListItemPrefab: {fileID: 667185612437739339, guid: 75fbd8d66fddd1241bdfe22a6e946c40, type: 3}
   newLevelButton: {fileID: 1971781203}
@@ -2275,7 +2276,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 50
   m_Viewport: {fileID: 0}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}

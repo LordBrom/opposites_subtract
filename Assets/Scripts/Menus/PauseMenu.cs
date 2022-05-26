@@ -7,7 +7,7 @@ public class PauseMenu : HideableMenu {
 
 	protected override void Start() {
 		base.Start();
-		mainPauseMenu.ShowMenu();
+		this.ShowMainPause();
 	}
 
 	protected override void Update() {

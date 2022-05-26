@@ -25,20 +25,8 @@ public static class LevelManager {
 		LevelManager.level = level;
 	}
 
-	public static bool SetNextLevel() {
-		if (LevelManager.isCustom) {
-			return false;
-		}
-		LevelManager.currentLevel++;
-		if (LevelManager.currentLevel < LevelManager.levels.Length) {
-			LevelManager.level = LevelManager.levels[currentLevel];
-			return true;
-		}
-		return false;
-	}
-
 	public static Level GetNextLevel() {
-		if (LevelManager.isCustom) {
+		if (level.isCustom) {
 			return null;
 		}
 		currentLevel++;

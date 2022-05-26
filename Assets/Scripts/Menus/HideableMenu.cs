@@ -5,6 +5,7 @@ public class HideableMenu : MonoBehaviour {
 
 	#region Variables
 
+	public bool startShowing;
 	private CanvasGroup canvasGroup;
 	protected bool showing;
 
@@ -16,7 +17,11 @@ public class HideableMenu : MonoBehaviour {
 	}
 
 	protected virtual void Start() {
-		this.HideMenu();
+		if (startShowing) {
+			this.ShowMenu();
+		} else {
+			this.HideMenu();
+		}
 	}
 	protected virtual void Update() {
 	}

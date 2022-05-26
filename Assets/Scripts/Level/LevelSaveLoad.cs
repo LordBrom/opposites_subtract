@@ -7,9 +7,8 @@ using UnityEngine;
 public static class LevelSaveLoad {
 	#region Variables
 
-	private static string rootLevelPath = Application.dataPath + "/Levels/";
-	private static string mainLevelPath = LevelSaveLoad.rootLevelPath + "Main/";
-	private static string customLevelPath = LevelSaveLoad.rootLevelPath + "Custom/";
+	private static string mainLevelPath = Application.dataPath + "/Levels/";
+	private static string customLevelPath = Application.dataPath + "/../Levels/";
 	private static bool foldersChecked = false;
 
 	#endregion
@@ -17,9 +16,6 @@ public static class LevelSaveLoad {
 	private static void CheckFolders() {
 		if (LevelSaveLoad.foldersChecked) {
 			return;
-		}
-		if (!Directory.Exists(LevelSaveLoad.rootLevelPath)) {
-			Directory.CreateDirectory(LevelSaveLoad.rootLevelPath);
 		}
 		if (!Directory.Exists(LevelSaveLoad.mainLevelPath)) {
 			Directory.CreateDirectory(LevelSaveLoad.mainLevelPath);

@@ -5,6 +5,7 @@ By: Nate Mills
 Created for the 2021 Yogscast Jingle Jam Game Jam.
 Jam Theme: Opposites
 
+Updated for the Improve My Game Jam 21.
 
 "A super simple puzzle game where you push opposite blocks together to find the exit for each level."
 

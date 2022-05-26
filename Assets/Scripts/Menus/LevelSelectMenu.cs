@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class LevelSelectMenu : HideableMenu {
@@ -10,11 +11,17 @@ public class LevelSelectMenu : HideableMenu {
 	private Transform levelListing;
 	[SerializeField]
 	private GameObject levelListItemPrefab;
+	[SerializeField]
+	private GameObject newLevelButton;
+	[SerializeField]
+	private GameObject levelToggleButton;
 
 	#endregion
 	#region Variables
 
 	private List<GameObject> loadedLevels;
+	private bool showingCustom;
+	private Text levelToggleButtonText;
 
 	#endregion
 
@@ -23,20 +30,38 @@ public class LevelSelectMenu : HideableMenu {
 		base.Start();
 
 		loadedLevels = new List<GameObject>();
+		levelToggleButtonText = levelToggleButton.GetComponentInChildren<Text>();
 	}
 	#endregion
 
 	public void ShowLevelSelectMenu(bool forEditor = false) {
 		LevelManager.LoadLevels(reload: true);
+		this.showingCustom = forEditor;
+		this.LoadLevels();
+
+		if (forEditor) {
+			newLevelButton.SetActive(true);
+			levelToggleButton.SetActive(false);
+		} else {
+			newLevelButton.SetActive(false);
+			levelToggleButton.SetActive(true);
+		}
+
+		this.ShowMenu();
+	}
+
+	private void ClearLevelListing() {
 		foreach (GameObject levelObject in loadedLevels) {
 			Destroy(levelObject);
 		}
 		loadedLevels.Clear();
-		this.LoadLevelListingItems(LevelManager.customLevels);
-		if (!forEditor) {
-			this.LoadLevelListingItems(LevelManager.levels);
+	}
+
+	private void LoadLevels(bool clearFirst = true) {
+		if (this.showingCustom) {
+			ClearLevelListing();
 		}
-		this.ShowMenu();
+		this.LoadLevelListingItems(this.showingCustom ? LevelManager.customLevels : LevelManager.levels);
 	}
 
 	private void LoadLevelListingItems(Level[] levels) {
@@ -54,5 +79,15 @@ public class LevelSelectMenu : HideableMenu {
 	public void NewLevelButton() {
 		LevelManager.SetLevel(new Level(isCustom: true));
 		SceneManager.LoadScene(2);
+	}
+
+	public void ToggleLevelListing() {
+		this.showingCustom = !this.showingCustom;
+		this.LoadLevels();
+		if (this.showingCustom) {
+			this.levelToggleButtonText.text = "Show Main";
+		} else {
+			this.levelToggleButtonText.text = "Show Custom";
+		}
 	}
 }

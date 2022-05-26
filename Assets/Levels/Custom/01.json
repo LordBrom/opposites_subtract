@@ -1,1 +1,0 @@
-{"name":"01","width":3,"height":3,"levelText":"Reach the Green Square to Complete the Level","nextLevel":"","spawn":{"x":2.0,"y":1.0},"levelObjects":[{"type":1,"position":{"x":0.0,"y":1.0},"objectPair":{"instanceID":0},"collisionID":"","hasLevelEnd":false}],"walls":[]}

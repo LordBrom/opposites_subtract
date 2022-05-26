@@ -88,7 +88,10 @@ public class LevelBuilder : MonoBehaviour {
 
 				case LevelObject.Type.Object:
 					GameObject newObject = Instantiate(blockPrefab, new Vector3(levelObject.position.x, levelObject.position.y, 4), Quaternion.identity, transform);
-					newObject.GetComponent<Reactor>().setBlockData(levelObject);
+					Debug.Log(levelObject);
+					Debug.Log(levelObject.objectPair.name);
+					Debug.Log(levelObject.collisionID);
+					newObject.GetComponent<Reactor>().setBlockData(levelObject, buildMode);
 					renderedLevelObjects.Add(newObject);
 					break;
 

@@ -4,6 +4,9 @@ public class Reactor : Collidable {
 
 	#region Inspector Assignments
 
+	[SerializeField]
+	private GameObject endLevelIndicator;
+
 	public string collisionID;
 	public Vector2 soundRange;
 
@@ -11,9 +14,11 @@ public class Reactor : Collidable {
 	#region Variables
 
 	public bool hasLevelEnd;
+	public bool editMode;
 
 	private AudioSource pushSound;
 	private Vector3 lastPosition;
+	private LevelObject levelObject;
 
 	#endregion
 
@@ -34,11 +39,6 @@ public class Reactor : Collidable {
 		base.Update();
 	}
 
-	private void OnValidate() {
-	}
-
-	#endregion
-
 	protected override void OnCollide(Collider2D coll) {
 		Reactor otherReactor = coll.gameObject.GetComponent<Reactor>();
 
@@ -54,12 +54,30 @@ public class Reactor : Collidable {
 			}
 		}
 	}
+	#endregion
 
-	public virtual void setBlockData(LevelObject levelObject) {
+	public virtual void setBlockData(LevelObject levelObject, bool editMode = false) {
 		this.collisionID = levelObject.collisionID;
-		this.name = levelObject.objectPair.name;
+		this.name = levelObject.name;
 		this.hasLevelEnd = levelObject.hasLevelEnd;
-		gameObject.GetComponent<SpriteRenderer>().sprite = levelObject.objectPair.sprite;
+		this.levelObject = levelObject;
+		this.editMode = editMode;
+		gameObject.GetComponent<SpriteRenderer>().sprite = levelObject.sprite;
+
+		if (editMode) {
+			endLevelIndicator.SetActive(true);
+		} else {
+			endLevelIndicator.SetActive(false);
+		}
+	}
+
+	public void ToggleHasLevelEnd() {
+		if (this.hasLevelEnd) {
+			this.hasLevelEnd = false;
+		} else {
+			this.hasLevelEnd = true;
+		}
+		this.levelObject.hasLevelEnd = this.hasLevelEnd;
 	}
 
 	void PlayPushSound() {

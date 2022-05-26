@@ -23,13 +23,11 @@ public class HoverMenuChild : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 	}
 
 	public void OnPointerEnter(PointerEventData eventData) {
-		Debug.Log("Entered " + this.name);
-		parentHover.OnPointerEnter(eventData);
+		//parentHover.OnPointerEnter(eventData);
 	}
 
 	public void OnPointerExit(PointerEventData eventData) {
-		Debug.Log("Exit " + this.name);
-		parentHover.OnPointerExit(eventData);
+		//parentHover.OnPointerExit(eventData);
 	}
 	#endregion
 }

@@ -11,6 +11,9 @@ public class LevelObject {
 	public string collisionID;
 	public bool hasLevelEnd;
 
+	public string name;
+	public Sprite sprite;
+
 	[System.Serializable]
 	public enum Type {
 		Spawn,
@@ -33,5 +36,7 @@ public class LevelObject {
 		this.position = position;
 		this.objectPair = objectPair;
 		this.collisionID = collisionID;
+		this.name = objectPair.name;
+		this.sprite = objectPair.sprite;
 	}
 }

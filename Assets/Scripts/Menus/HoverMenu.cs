@@ -31,7 +31,6 @@ public class HoverMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
 	public void OnPointerEnter(PointerEventData eventData) {
 		this.counter += 1;
-		//Debug.Log("Entered " + this.name + " " + this.counter.ToString());
 		//canvasGroup.alpha = 1f;
 	}
 
@@ -40,7 +39,6 @@ public class HoverMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 		if (this.counter < 0) {
 			this.counter = 0;
 		}
-		//Debug.Log("Exit " + this.name + " " + this.counter.ToString());
 		//canvasGroup.alpha = hiddenAlpha;
 	}
 	#endregion

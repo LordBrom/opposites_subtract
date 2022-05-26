@@ -74,6 +74,7 @@ public class LevelEditor : LevelBuilder {
 							this.level.spawn = new Vector2(x, y);
 							clickedTile.hasOther = true;
 						}
+						this.ClearActiveTileType();
 						break;
 
 					case LevelObject.Type.wall:
@@ -98,6 +99,9 @@ public class LevelEditor : LevelBuilder {
 						newObject = new LevelObject(this.activeTileType, new Vector2(x, y));
 						this.level.levelObjects.Add(newObject);
 						clickedTile.hasFakeWall = true;
+						if (!Input.GetKeyDown(KeyCode.LeftShift)) {
+							this.ClearActiveTileType();
+						}
 						break;
 
 					case LevelObject.Type.LevelEnd:
@@ -133,6 +137,9 @@ public class LevelEditor : LevelBuilder {
 						this.level.levelObjects.Add(newObject);
 						clickedTile.hasOther = true;
 						clickedTile.placedObject = newObject;
+						if (!Input.GetKeyDown(KeyCode.LeftShift)) {
+							this.ClearActiveTileType();
+						}
 						break;
 
 					default:
@@ -150,18 +157,24 @@ public class LevelEditor : LevelBuilder {
 		if (this.widthInput.text == "" || this.heightInput.text == "") {
 			return;
 		}
-		this.level.width = int.Parse(this.widthInput.text);
-		this.level.height = int.Parse(this.heightInput.text);
+		bool resetGrid = false;
+		int newWidth = int.Parse(this.widthInput.text);
+		int newHeight = int.Parse(this.heightInput.text);
+		if (this.level.width != newWidth || this.level.height != newHeight) {
+			resetGrid = true;
+		}
+		this.level.width = newWidth;
+		this.level.height = newHeight;
 		this.level.levelText = this.levelTextInput.text;
 		this.level.name = this.levelNameInput.text;
-		SetupNewGrid();
+		if (resetGrid) {
+			SetupNewGrid();
+		}
 		BuildLevel(this.level, true);
 	}
 
-	public void SaveLevelButton(bool asMain = false) {
-		if (asMain) {
-			this.level.isCustom = false;
-		}
+	public void SaveLevelButton(bool asCustom = true) {
+		this.level.isCustom = asCustom;
 		LevelSaveLoad.SaveLevelJson(this.level);
 	}
 

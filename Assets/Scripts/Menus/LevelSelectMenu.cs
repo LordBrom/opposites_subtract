@@ -26,14 +26,14 @@ public class LevelSelectMenu : HideableMenu {
 	}
 	#endregion
 
-	public void ShowLevelSelectMenu(bool customOnly = true) {
+	public void ShowLevelSelectMenu(bool forEditor = false) {
 		LevelManager.LoadLevels(reload: true);
 		foreach (GameObject levelObject in loadedLevels) {
 			Destroy(levelObject);
 		}
 		loadedLevels.Clear();
 		this.LoadLevelListingItems(LevelManager.customLevels);
-		if (!customOnly) {
+		if (!forEditor) {
 			this.LoadLevelListingItems(LevelManager.levels);
 		}
 		this.ShowMenu();

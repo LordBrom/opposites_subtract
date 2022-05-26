@@ -7,12 +7,12 @@ public class MainMenu : MonoBehaviour {
 
 	public void StartGame() {
 		LevelManager.loadCustom = false;
-		levelSelectMenu.ShowLevelSelectMenu();
+		levelSelectMenu.ShowLevelSelectMenu(false);
 	}
 
 	public void LevelEditor() {
 		LevelManager.loadCustom = true;
-		levelSelectMenu.ShowLevelSelectMenu(true);
+		levelSelectMenu.ShowLevelSelectMenu();
 	}
 
 	public void QuitGame() {

@@ -44,7 +44,7 @@ public class LevelEditor : LevelBuilder {
 	private void Start() {
 		this.level = LevelManager.level;
 		if (this.level == null) {
-			this.level = new Level(true);
+			this.level = new Level(isCustom: true);
 		}
 
 		this.widthInput.text = this.level.width.ToString();

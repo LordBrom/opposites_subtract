@@ -26,13 +26,16 @@ public class LevelSelectMenu : HideableMenu {
 	}
 	#endregion
 
-	public void ShowLevelSelectMenu(bool customLevels = false) {
+	public void ShowLevelSelectMenu(bool customOnly = true) {
 		LevelManager.LoadLevels(reload: true);
 		foreach (GameObject levelObject in loadedLevels) {
 			Destroy(levelObject);
 		}
 		loadedLevels.Clear();
-		this.LoadLevelListingItems(customLevels ? LevelManager.customLevels : LevelManager.levels);
+		this.LoadLevelListingItems(LevelManager.customLevels);
+		if (!customOnly) {
+			this.LoadLevelListingItems(LevelManager.levels);
+		}
 		this.ShowMenu();
 	}
 
@@ -49,7 +52,7 @@ public class LevelSelectMenu : HideableMenu {
 	}
 
 	public void NewLevelButton() {
-		LevelManager.SetLevel(new Level(true));
+		LevelManager.SetLevel(new Level(isCustom: true));
 		SceneManager.LoadScene(2);
 	}
 }

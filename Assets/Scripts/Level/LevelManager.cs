@@ -22,9 +22,6 @@ public static class LevelManager {
 	}
 
 	public static void SetLevel(Level level) {
-		//if (level.isCustom) {
-
-		//}
 		LevelManager.level = level;
 	}
 

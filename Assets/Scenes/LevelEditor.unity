@@ -1994,7 +1994,12 @@ MonoBehaviour:
   objectPairs:
   - {fileID: 11400000, guid: ebff6dabf76acc14997e19470a193473, type: 2}
   - {fileID: 11400000, guid: cd275e67fd45fde4c961e8d3783ae60b, type: 2}
+  - {fileID: 11400000, guid: 4a62cac5b7a109541b0e7a3a2e78164f, type: 2}
   - {fileID: 11400000, guid: bcff5fbbedaf8ba459ab40a39513633d, type: 2}
+  - {fileID: 11400000, guid: c7120523c95024946a3fdedce3f97529, type: 2}
+  - {fileID: 11400000, guid: 556470180272ba844a51472a7202b7af, type: 2}
+  - {fileID: 11400000, guid: 271f8fedd237980489a2624471f406fa, type: 2}
+  - {fileID: 11400000, guid: d7b68dba45d661e4dbae4543e0555439, type: 2}
   tileOptionPrefab: {fileID: 5483409671879854627, guid: 1ea55486114c0b94d8c8cdb5df23c5ed, type: 3}
 --- !u!225 &1129372092
 CanvasGroup:

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1704110699242098814}
   - component: {fileID: 1704110699242098813}
   - component: {fileID: 1704110699242098812}
-  - component: {fileID: 1704110699242098755}
   - component: {fileID: 2948693813249545097}
+  - component: {fileID: 5884763364344437410}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -96,7 +96,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704110699242098754}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -135,38 +135,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &1704110699242098755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1704110699242098754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f93e348eb564ca449afc6f4b9b618ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  filter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  endLevelIndicator: {fileID: 8281722554358927178}
-  collisionID: 
-  soundRange: {x: 0.2, y: 0.6}
-  hasLevelEnd: 0
-  editMode: 0
+  m_Constraints: 7
 --- !u!82 &2948693813249545097
 AudioSource:
   m_ObjectHideFlags: 0
@@ -263,6 +232,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5884763364344437410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704110699242098754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f93e348eb564ca449afc6f4b9b618ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  endLevelIndicator: {fileID: 8281722554358927178, guid: c32fb02ea233db04184bee7137e52fbc, type: 3}
+  collisionID: 
+  soundRange: {x: 0.2, y: 0.6}
+  hasLevelEnd: 0
+  editMode: 0
 --- !u!1 &8281722554358927178
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d089e96e171cb8d43bf41636e43c0d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentTile: {fileID: 1704110699242098755}
+  parentTile: {fileID: 5884763364344437410}
   activeColor: {r: 0.18039216, g: 0.9921569, b: 0, a: 1}
   inactiveColor: {r: 0.1387828, g: 0.3207547, b: 0.09834461, a: 1}
 --- !u!61 &2509388787764103362

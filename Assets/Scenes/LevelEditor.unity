@@ -1046,13 +1046,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallPrefab: {fileID: 4237336360454892223, guid: 81a01ef2ba8e27c4ba7c015e7d6cc733, type: 3}
-  playerPrefab: {fileID: 5848662072514202188, guid: 89d9cfa5144d1f0489459311e0a92b70, type: 3}
-  inversePlayerPrefab: {fileID: 5848662072514202188, guid: df3e83d111f67d54c877477a81abd4d6, type: 3}
+  playerPrefab: {fileID: 5848662072514202188, guid: 62061b558399b284caa42cfcfb64b232, type: 3}
+  inversePlayerPrefab: {fileID: 5848662072514202188, guid: 5876521370ae26b4ab3aa54d186bc9bf, type: 3}
   endPointPrefab: {fileID: 7758927272280024597, guid: 109554015d9db1844a48a0a287541e07, type: 3}
-  blockPrefab: {fileID: 1704110699242098754, guid: c32fb02ea233db04184bee7137e52fbc, type: 3}
+  blockPrefab: {fileID: 1704110699242098754, guid: 0d65e76eb13b49b4cb8e5ab4e330d69e, type: 3}
   floorPrefab: {fileID: 450840939711168872, guid: 4194907bd73d63d4285766a924b8baeb, type: 3}
   spikePrefab: {fileID: 1704110699242098754, guid: e6df1f766d4d01f45a242a068c8c2a46, type: 3}
-  fakeWallPrefab: {fileID: 4237336360454892223, guid: 786267e95450a3f4883b6e7f0a78a359, type: 3}
+  fakeWallPrefab: {fileID: 4237336360454892223, guid: 6b92819b6d5d89f40bbf8f1d79f38acf, type: 3}
   levelText: {fileID: 0}
   displayTilePrefab: {fileID: 4677285401917556427, guid: b16f5c8086d95dd41bc071ef591d1aeb, type: 3}
   pauseMenu: {fileID: 2031695376}
@@ -1777,15 +1777,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5483409671879854629, guid: 1ea55486114c0b94d8c8cdb5df23c5ed, type: 3}
       propertyPath: m_Color.b
-      value: 0.20754719
+      value: 0.6509804
       objectReference: {fileID: 0}
     - target: {fileID: 5483409671879854629, guid: 1ea55486114c0b94d8c8cdb5df23c5ed, type: 3}
       propertyPath: m_Color.g
-      value: 0.20754719
+      value: 0.6509804
       objectReference: {fileID: 0}
     - target: {fileID: 5483409671879854629, guid: 1ea55486114c0b94d8c8cdb5df23c5ed, type: 3}
       propertyPath: m_Color.r
-      value: 0.20754719
+      value: 0.6509804
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ea55486114c0b94d8c8cdb5df23c5ed, type: 3}
@@ -2021,7 +2021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Color: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2770,27 +2770,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5483409671879854629, guid: 1ea55486114c0b94d8c8cdb5df23c5ed, type: 3}
       propertyPath: m_Type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5483409671879854629, guid: 1ea55486114c0b94d8c8cdb5df23c5ed, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: f7abf4bed7c43dc4594d21d8182d1e95, type: 3}
     - target: {fileID: 5483409671879854629, guid: 1ea55486114c0b94d8c8cdb5df23c5ed, type: 3}
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5483409671879854629, guid: 1ea55486114c0b94d8c8cdb5df23c5ed, type: 3}
       propertyPath: m_Color.b
-      value: 0.6320754
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5483409671879854629, guid: 1ea55486114c0b94d8c8cdb5df23c5ed, type: 3}
       propertyPath: m_Color.g
-      value: 0.6320754
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5483409671879854629, guid: 1ea55486114c0b94d8c8cdb5df23c5ed, type: 3}
       propertyPath: m_Color.r
-      value: 0.6320754
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ea55486114c0b94d8c8cdb5df23c5ed, type: 3}

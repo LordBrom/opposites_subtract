@@ -88,9 +88,6 @@ public class LevelBuilder : MonoBehaviour {
 
 				case LevelObject.Type.Object:
 					GameObject newObject = Instantiate(blockPrefab, new Vector3(levelObject.position.x, levelObject.position.y, 4), Quaternion.identity, transform);
-					Debug.Log(levelObject);
-					Debug.Log(levelObject.objectPair.name);
-					Debug.Log(levelObject.collisionID);
 					newObject.GetComponent<Reactor>().setBlockData(levelObject, buildMode);
 					renderedLevelObjects.Add(newObject);
 					break;
@@ -101,9 +98,6 @@ public class LevelBuilder : MonoBehaviour {
 
 				case LevelObject.Type.InverseSpawn:
 					GameObject inversePlayer = Instantiate(inversePlayerPrefab, new Vector3(levelObject.position.x, levelObject.position.y, 4), Quaternion.identity, transform);
-					if (buildMode) {
-						inversePlayer.GetComponent<PlayerController>().canMove = false;
-					}
 					renderedLevelObjects.Add(inversePlayer);
 					break;
 
@@ -119,9 +113,6 @@ public class LevelBuilder : MonoBehaviour {
 
 	protected virtual void SpawnPlayer(Vector2 spawn, bool buildMode = false) {
 		GameObject player = Instantiate(playerPrefab, new Vector3(spawn.x, spawn.y, 4), Quaternion.identity, this.transform);
-		if (buildMode) {
-			player.GetComponent<PlayerController>().canMove = false;
-		}
 		renderedLevelObjects.Add(player);
 	}
 

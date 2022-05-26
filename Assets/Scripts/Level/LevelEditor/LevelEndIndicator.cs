@@ -25,6 +25,7 @@ public class LevelEndIndicator : MonoBehaviour {
 
 	private void Update() {
 		if (parentTile.hasLevelEnd) {
+			Debug.Log("here");
 			this.spriteRenderer.color = activeColor;
 		} else {
 			this.spriteRenderer.color = inactiveColor;

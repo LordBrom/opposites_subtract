@@ -78,9 +78,8 @@ public class LevelEditor : LevelBuilder {
 						break;
 
 					case LevelObject.Type.wall:
-						if (!clickedTile.hasOther) {
-							this.level.ToggleWall(new Vector2(x, y));
-							clickedTile.hasWall = this.level.walls.Contains(new Vector2(x, y));
+						if (!clickedTile.hasOther && !clickedTile.hasFakeWall) {
+							clickedTile.hasWall = this.level.ToggleWall(new Vector2(x, y));
 						}
 						break;
 
@@ -89,15 +88,14 @@ public class LevelEditor : LevelBuilder {
 							break;
 						}
 						if (clickedTile.hasFakeWall) {
-							this.level.levelObjects.Remove(clickedTile.placedObject);
-							if (clickedTile.placedObject.type == this.activeTileType) {
-								clickedTile.placedObject = null;
-								clickedTile.hasFakeWall = false;
-								break;
-							}
+							this.level.levelObjects.Remove(clickedTile.fakeWallObject);
+							clickedTile.fakeWallObject = null;
+							clickedTile.hasFakeWall = false;
+							break;
 						}
 						newObject = new LevelObject(this.activeTileType, new Vector2(x, y));
 						this.level.levelObjects.Add(newObject);
+						clickedTile.fakeWallObject = newObject;
 						clickedTile.hasFakeWall = true;
 						if (!Input.GetKeyDown(KeyCode.LeftShift)) {
 							this.ClearActiveTileType();
@@ -110,28 +108,25 @@ public class LevelEditor : LevelBuilder {
 						if (clickedTile.hasWall) {
 							break;
 						}
-						if (clickedTile.hasOther) {
+						if (clickedTile.hasOther && clickedTile.placedObject.type == this.activeTileType) {
 							this.level.levelObjects.Remove(clickedTile.placedObject);
-							if (clickedTile.placedObject.type == this.activeTileType) {
-								clickedTile.placedObject = null;
-								clickedTile.hasOther = false;
-								break;
-							}
+							clickedTile.placedObject = null;
+							clickedTile.hasOther = false;
+							break;
 						}
 						newObject = new LevelObject(this.activeTileType, new Vector2(x, y));
 						this.level.levelObjects.Add(newObject);
+						clickedTile.placedObject = newObject;
 						clickedTile.hasOther = true;
 						break;
 					case LevelObject.Type.Object:
 						if (clickedTile.hasWall) {
 							break;
 						}
-						if (clickedTile.hasOther) {
+						if (clickedTile.hasOther && clickedTile.placedObject.type == this.activeTileType && clickedTile.placedObject.name == this.activeObjectPair.name) {
 							this.level.levelObjects.Remove(clickedTile.placedObject);
-							if (clickedTile.placedObject.type == this.activeTileType && clickedTile.placedObject.objectPair == this.activeObjectPair) {
-								clickedTile.placedObject = null;
-								break;
-							}
+							clickedTile.placedObject = null;
+							break;
 						}
 						newObject = new LevelObject(this.activeTileType, new Vector2(x, y), this.activeObjectPair, this.GetNewCollisionId());
 						this.level.levelObjects.Add(newObject);
@@ -230,8 +225,10 @@ public class LevelEditor : LevelBuilder {
 				gridTile.placedObject = levelObject;
 				if (levelObject.type == LevelObject.Type.FakeWall) {
 					gridTile.hasFakeWall = true;
+					gridTile.fakeWallObject = levelObject;
 				} else {
 					gridTile.hasOther = true;
+					gridTile.placedObject = levelObject;
 				}
 			}
 		}

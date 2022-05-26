@@ -109,6 +109,7 @@ public class GridTile {
 	public bool hasOther;
 
 	public LevelObject placedObject;
+	public LevelObject fakeWallObject;
 
 	public GridTile(Grid grid, int x, int y) {
 		this.grid = grid;

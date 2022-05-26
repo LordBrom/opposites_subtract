@@ -52,12 +52,13 @@ public class Level {
 		}
 	}
 
-	public void ToggleWall(Vector2 wallPosition) {
+	public bool ToggleWall(Vector2 wallPosition) {
 		if (this.walls.Contains(wallPosition)) {
 			this.RemoveWall(wallPosition);
 		} else {
 			this.AddWall(wallPosition);
 		}
+		return this.walls.Contains(wallPosition);
 	}
 
 	public void AddWall(Vector2 wallPosition) {

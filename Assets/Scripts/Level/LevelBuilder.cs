@@ -23,12 +23,14 @@ public class LevelBuilder : MonoBehaviour {
 
 	protected List<GameObject> renderedLevelObjects = new List<GameObject>();
 	protected Camera cam;
+	protected SpriteManager spriteManager;
 
 	#endregion
 
 	#region Unity Methods
 	protected virtual void Awake() {
 		cam = Camera.main;
+		spriteManager = GetComponent<SpriteManager>();
 	}
 
 	#endregion
@@ -88,6 +90,7 @@ public class LevelBuilder : MonoBehaviour {
 
 				case LevelObject.Type.Object:
 					GameObject newObject = Instantiate(blockPrefab, new Vector3(levelObject.position.x, levelObject.position.y, 4), Quaternion.identity, transform);
+					levelObject.sprite = spriteManager.GetSprite(levelObject.name);
 					newObject.GetComponent<Reactor>().setBlockData(levelObject, buildMode);
 					renderedLevelObjects.Add(newObject);
 					break;
